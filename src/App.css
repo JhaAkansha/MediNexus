@@ -1,38 +1,157 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #e3e6e0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.NavBar {
+  background-color: #16423c;
+  color: #e3e6e0;
+  width: 100%;
+  height: 10%;
+  display: inline-block;
+  vertical-align: top;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.NavButtons {
+  list-style-type: none; /* Removes bullet points */
+  display: flex; /* Aligns items in a row */
+  gap: 15px; /* Adds space between items */
+  justify-content: flex-end; /*ALign content to the right end */
+  padding-inline-end: 20px;
+}
+
+.NavButtons li {
+  display: inline; /* Ensures list items are inline */
+}
+
+.NavButtons a {
+  text-decoration: none; /* Removes underline from links */
+  color: #e3e6e0; /* Changes link color */
+  font-weight: bold;
+}
+
+.container {
+  display: flex;                
+  justify-content: space-between; 
+  align-items: flex-start;      
+  width: 100%;                
+}
+
+.title{
+  width: 80%;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  padding-top: 5%; 
+  padding-left: 10%;
+}
+
+.profile-add {
+  width: 64px;
+  height: 64px;
+} 
+
+.medinexus {
+  color: #16423c;
+}
+
+.tagline {
+  color: #16423c;
+  font-weight: lighter;
+  font-style: oblique;
+}
+
+.login-button {
+  background-color: #6a9c89;
+  color:#16423c;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #588272; /* Darker green on hover */
+}
+
+.login-button:focus {
+  outline: none; /* Removes outline when button is focused */
+}
+
+.login-button:active {
+  background-color: #426256; /* Even darker green when active */
+}
+
+.stock {
+  display: flex;
+}
+
+.stock1 {
+  width: 800px;
+  height: 350px;
+}
+
+.stock2 {
+  width: auto;
+  height: 300px;
+}
+
+.contact-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #16423c;
+  width: 100%;
+  height: calc(100vh - 425px); 
+}
+
+.socials {
+  display: inline-block;
+}
+
+.instagram {
+  padding: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.facebook {
+  padding: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.twitter {
+  padding: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.subscribe-text {
+  color: #e3e6e0;
+  font-style: italic;
+}
+
+.input-generate {
+  padding: 10px;
+  width: 100%;
+  padding-left: 10%;
+}
+
+.newsletter-subscribe {
+  background-color: #e3e6e0;
+  color: #16423c;
+  cursor: pointer;
+}
+.newsletter-subscribe:hover {
+  background-color: #16423c;
+  color: #e3e6e0;
 }

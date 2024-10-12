@@ -6,8 +6,8 @@ import Services from "./pages/services"
 import Contact from "./pages/contact"
 import Calendar from "./pages/calender"
 import icon from './profile-add.svg';
-import homepage1 from './homepage1.jpg';
-import homepage2 from './homepage2.jpg';
+// import homepage1 from './homepage1.jpg';
+// import homepage2 from './homepage2.jpg';
 import homepage3 from './homepage3.jpg';
 import instagram from './instagram.svg';
 import twitter from './twitter.svg';
@@ -48,7 +48,7 @@ function App() {
         <div className='newsletter'>
           <div className='subscribe-text'>Subscribe to our newsletter!</div>
           <div className='input-generate'>
-          <input placeholder='Enter your email'/>
+          <input placeholder='Enter your email'id = 'email-input'/>
           <button className='newsletter-subscribe'>Submit</button>
           </div>
         </div>

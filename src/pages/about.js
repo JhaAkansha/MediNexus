@@ -1,7 +1,10 @@
-
-const About = () => {
+function About() {
     return (
-        <div>This will contain all the about stuff code</div>
+      <div className="App">
+        <header className="App-header">
+        <div>Contains info about medinexus</div>
+        </header>
+      </div>
     );
   }
   

@@ -8,7 +8,9 @@ function Calendar() {
   return (
     <div className="calendar">
       <div className='heading'> CALENDAR</div>
+      <div className='calendar-container'>
       <Cal onChange={setDate} value = {date}/>
+      </div>
     </div> 
   );
 }

@@ -85,6 +85,13 @@
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
-    background-color: rgb(219, 218, 218);
-    color: #878787;
+    opacity: 0.5;
+  }
+
+  .react-calendar__month-view__days__day--weekend{
+    color: rgb(255, 56, 56);
+  }
+
+  .react-calendar__month-view__days__day{
+    font-size: 18px;
   }

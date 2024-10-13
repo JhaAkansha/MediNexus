@@ -1,11 +1,21 @@
+// about.js
+import React from 'react';
+import './about.css'; // Ensure this points to your CSS file
+
 function About() {
-    return (
-      <div className="App">
-        <header className="App-header">
-        <div>Contains info about medinexus</div>
-        </header>
+  return (
+    <div className="about-page">
+      <div className="about-content">
+        <h1 className="about-heading">About Us</h1>
       </div>
-    );
-  }
-  
-  export default About;
+      <div className="vertical-line"></div> {/* Vertical Line */}
+      <div className="info">
+        <div>
+          Medinexus is more than just a digital solution; it's a transformative tool that revolutionizes the way appointments are managed in the healthcare industry. Our system prioritizes efficiency, security, and convenience, ensuring a seamless experience for all users. Join us in enhancing healthcare accessibility and efficiency for a better tomorrow.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default About;

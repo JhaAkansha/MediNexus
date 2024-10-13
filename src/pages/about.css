@@ -1,0 +1,48 @@
+.about-page {
+    background-color: #e3e6e0; /* Background color */
+    min-height: 100vh; /* Full height */
+    display: flex; /* Use Flexbox */
+    align-items: flex-start; /* Align items at the start */
+    padding: 20px; /* Padding around the content */
+}
+
+.about-content {
+    flex: 1; /* Take 1 part of the space */
+    padding: 20px; /* Padding for the content */
+    margin-top: 100px; /* Add margin above the entire content */
+    background-color: #ffffff; /* Change this to your desired color */
+    border-radius: 8px; /* Optional: add rounded corners */
+}
+
+.vertical-line {
+    width: 2px; /* Width of the vertical line */
+    background-color: #16423c; /* Updated color of the line */
+    height: 100%; /* Set height to 100% of the container */
+    margin: 0 20px; /* Space around the line */
+}
+
+.info {
+    flex: 2; /* Take 2 parts of the space for information */
+    padding: 20px; /* Padding for the info */
+    display: flex; /* Use Flexbox */
+    align-items: flex-start; /* Align content to the top */
+    justify-content: flex-start; /* Align content to the start */
+}
+
+.about-heading {
+    color: #16423c; /* Adjust the color as needed */
+    font-size: 36px; /* Increased font size */
+    margin-top: 20px; /* Add space above the heading */
+    margin-left: 100px;
+    margin-right: 50px;
+    margin-bottom: 10px; /* Space below the heading */
+    font-weight: bold; /* Make the font bold */
+}
+
+
+.info div {
+    color: #16423c; /* Same color as the heading for the info text */
+    font-size: 20px; /* Increased font size */
+    line-height: 1.5; /* Improve readability */
+    margin-top: 90px; /* Add space above the info text */
+}

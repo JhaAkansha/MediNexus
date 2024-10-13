@@ -9,7 +9,7 @@ function Calendar() {
     <div className="calendar">
       <div className='heading'> CALENDAR</div>
       <Cal onChange={setDate} value = {date}/>
-    </div>
+    </div> 
   );
 }
 

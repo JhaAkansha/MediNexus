@@ -1,0 +1,15 @@
+.calendar {
+    background-color: #e3e6e0;
+    display: flex;
+    min-height: 88vh;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+  }
+
+.heading {
+    color: #16423c;
+    font-size: larger;
+    padding: 20px;
+    font-weight: bold;
+}

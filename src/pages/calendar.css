@@ -95,3 +95,22 @@
   .react-calendar__month-view__days__day{
     font-size: 18px;
   }
+
+  .react-calendar__year-view__months {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50vh;
+  }
+
+  .react-calendar__decade-view__years {
+    height: 50vh;
+  }
+
+  .react-calendar__century-view__decades {
+    height: 50vh;
+  }
+
+  .calendar-container {
+    width: 80%;
+    min-height: 50vh;
+  }

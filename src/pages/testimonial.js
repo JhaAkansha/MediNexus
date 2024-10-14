@@ -26,11 +26,11 @@ function Testimonial() {
 
   return (
     <div className="Testimonial">
-      <h2>What Our Patients Say</h2>
+      <h2 className='heading'>What Our Patients Say</h2>
       <div className="testimonial-container">
         {testimonials.map((testimonial, index) => (
           <div key={index} className="testimonial-card">
-            <img src={testimonial.photo} alt={`${testimonial.name}'s photo`} className="testimonial-photo" />
+            <img src={testimonial.photo} alt={`${testimonial.name}`} className="testimonial-photo" />
             <h3 className="testimonial-name">{testimonial.name}</h3>
             <p className="testimonial-review">"{testimonial.review}"</p>
           </div>

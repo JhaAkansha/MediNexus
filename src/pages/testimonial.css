@@ -1,7 +1,12 @@
 .Testimonial {
+    min-height: 100vh;
     text-align: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #e3e6e0;
+  }
+
+  .heading {
+    color: #16423c;;
   }
   
   .testimonial-container {
@@ -28,6 +33,7 @@
   }
   
   .testimonial-name {
+    color: #484848;
     font-size: 18px;
     font-weight: bold;
     margin: 10px 0;

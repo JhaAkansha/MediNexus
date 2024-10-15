@@ -22,7 +22,7 @@
     color: #666;
   }
   
-  input, select, button {
+  input, select, submit-button {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -30,7 +30,7 @@
     border: 1px solid #ccc;
   }
   
-  button {
+  submit-button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -38,7 +38,7 @@
     transition: background-color 0.3s;
   }
   
-  button:hover {
+  submit-button:hover {
     background-color: #0056b3;
   }
   

@@ -50,7 +50,7 @@ function Appointment() {
           <option value="Dr. Lee">Dr. Lee</option>
         </select>
         
-        <button type="submit">Submit</button>
+        <button className= 'submit-button' type="submit">Submit</button>
       </form>
     </div>
   );

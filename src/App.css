@@ -3,14 +3,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /*fit-content works for about but for no other */
+  width: 100vw;
   font-size: calc(10px + 2vmin);
 }
 
 .NavBar {
   background-color: #16423c;
   color: #e3e6e0;
-  width: 100%;
+  width: 100vw;
   height: 10%;
   display: inline-block;
   vertical-align: top;
@@ -95,8 +95,8 @@
 }
 
 .stock1 {
-  width: 800px;
-  height: 350px;
+  width: 60vw;
+  height: 55vh;
 }
 
 .stock2 {
@@ -123,21 +123,34 @@
   height: 40px;
 }
 
+.newsletter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .subscribe-text {
   color: #e3e6e0;
   font-style: italic;
+  text-align: center;
 }
 
 .input-generate {
-  padding: 10px;
   width: 100%;
-  padding-left: 10%;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.email-input {
+  width: 30%;
 }
 
 .newsletter-subscribe {
   background-color: #e3e6e0;
   color: #16423c;
   cursor: pointer;
+  height: 80%;
 }
 .newsletter-subscribe:hover {
   background-color: #16423c;

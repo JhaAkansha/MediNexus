@@ -5,6 +5,10 @@
     padding: 20px;
 }
 
+.services-heading {
+    color: #e3e6e0;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

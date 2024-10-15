@@ -8,10 +8,10 @@
   }
 
 
-.heading {
+.calendar-heading {
     color: #16423c;
     font-size: larger;
-    padding: 20px;
+    padding-top: 20px;
     font-weight: bold;
 }
 

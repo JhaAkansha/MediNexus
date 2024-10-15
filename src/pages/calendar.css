@@ -32,6 +32,7 @@
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
     background-color:#6a9c89;
+    border-radius: 6px;
   }
   .react-calendar__navigation button[disabled] {
     background-color: #878787;
@@ -50,34 +51,15 @@
 .react-calendar__tile--active:enabled:focus {
   background: #6a9c89;
   color: white;
+  border-radius: 6px;
+}
+
+.react-calendar__month-view__days__day:hover{
+  border-radius: 6px;
 }
  
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #6a9c89;
-}
- 
-.react-calendar__tile--range {
-  background: #f8f8fa;
-  color: #6a9c89;
-  border-radius: 0;
-}
- 
-.react-calendar__tile--rangeStart {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  background: #6a9c89;
-  color: white;
-}
- 
-.react-calendar__tile--rangeEnd {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  background: #6a9c89;
-  color: white;
 }
 
 .react-calendar__month-view__days {
@@ -94,6 +76,7 @@
 
   .react-calendar__month-view__days__day{
     font-size: 18px;
+    border: none;
   }
 
   .react-calendar__year-view__months {

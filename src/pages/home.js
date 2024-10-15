@@ -34,7 +34,7 @@ function Home() {
         <div className='newsletter'>
           <div className='subscribe-text'>Subscribe to our newsletter!</div>
           <div className='input-generate'>
-          <input placeholder='Enter your email'id = 'email-input'/>
+          <input placeholder='Enter your email'className = 'email-input'/>
           <button className='newsletter-subscribe'>Submit</button>
           </div>
         </div>

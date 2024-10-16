@@ -19,7 +19,7 @@
   margin: 20px;
   }
   
-  h2 {
+  .appointment-heading {
     margin-bottom: 20px;
     color: #333;
   }
@@ -46,7 +46,7 @@
     border: 1px solid #ccc;
   }
   
-  submit-button {
+  .submit-button {
     padding: 5px;
     border-radius: 6px;
     border-width: 2px;
@@ -55,7 +55,7 @@
     background: #e3e6e0;
   }
   
-  submit-button:hover {
+  .submit-button:hover {
     background-color: #0056b3;
   }
   

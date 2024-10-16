@@ -24,9 +24,10 @@ function Appointment() {
   };
 
   return (
+    <div className='appointment'>
     <div className="form-container">
-      <h2>Book an Appointment</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className='appointment-heading'>Book an Appointment</h2>
+      <form className='inside-form' onSubmit={handleSubmit}>
         <label>Full Name:</label>
         <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         
@@ -52,6 +53,7 @@ function Appointment() {
         
         <button className= 'submit-button' type="submit">Submit</button>
       </form>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ const Services = () => {
         {
             title: "Appointment Booking",
             icon: "❤️", // Use appropriate icon
-            link: "/appointment", // Define your route
+            link: "/doctorProfile", // Define your route
         },
         {
             title: "Check Calendar",

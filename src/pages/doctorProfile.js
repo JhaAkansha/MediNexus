@@ -1,8 +1,8 @@
 import './doctorProfile.css'; // Import your CSS file
-
 import doctor1 from '../doctor1.jpeg';
 import doctor2 from '../doctor2.jpeg';
 import doctor3 from '../doctor3.jpeg';
+//import Appointment from './appointment';
 
 const doctors = [ // Array of doctor objects
   {
@@ -37,6 +37,7 @@ function DoctorProfile() {
               <h3>{doctor.name}</h3>
               <p className="specialization">{doctor.specialization}</p>
               <p className="about">{doctor.about}</p>
+              <a href="/appointment" className="appointment-button">Book Appointment</a>
             </div>
           </div>
         ))}

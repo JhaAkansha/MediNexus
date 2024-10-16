@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './appointment.css';
 
 function Appointment() {
@@ -8,7 +8,7 @@ function Appointment() {
     phone: '',
     date: '',
     time: '',
-    doctor: '',
+    doctor:'',
   });
 
   const handleChange = (e) => {
@@ -45,9 +45,9 @@ function Appointment() {
         <label>Doctor:</label>
         <select name="doctor" value={formData.doctor} onChange={handleChange} required>
           <option value="">Select Doctor</option>
-          <option value="Dr. Smith">Dr. Smith</option>
-          <option value="Dr. Johnson">Dr. Johnson</option>
-          <option value="Dr. Lee">Dr. Lee</option>
+          <option value="Dr. John Doe">Dr. John Doe</option>
+          <option value="Dr. Jane Smith">Dr. Jane Smith</option>
+          <option value="Dr. Michael Lee">Dr. Michael Lee</option>
         </select>
         
         <button className= 'submit-button' type="submit">Submit</button>

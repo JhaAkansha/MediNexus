@@ -40,7 +40,6 @@ function DoctorProfile() {
               <a href="/appointment" className="appointment-button">Book Appointment</a>
             </div>
           </div>
-          
         ))}
       </div>
     </div>

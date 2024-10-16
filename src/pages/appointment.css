@@ -1,13 +1,22 @@
 /* AppointmentForm.css */
+.appointment {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e3e3e3;
+  display: flex;
+  justify-content: center;
+}
 
 .form-container {
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
+  width: 60vw;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
   }
   
   h2 {
@@ -15,6 +24,11 @@
     color: #333;
   }
   
+  .inside-form {
+    width: 100%;
+    padding: 0px 20px 20px 20px;
+  }
+
   label {
     display: block;
     text-align: left;
@@ -22,8 +36,10 @@
     color: #666;
   }
   
-  input, select, submit-button {
-    width: 100%;
+  input, select{
+    display: flex;
+    align-items: center;
+    width: 85%;
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 4px;
@@ -31,11 +47,12 @@
   }
   
   submit-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 5px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: #16423c;
+    color: #16423c;
+    background: #e3e6e0;
   }
   
   submit-button:hover {

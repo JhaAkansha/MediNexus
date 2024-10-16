@@ -9,6 +9,7 @@ import Calendar from "./pages/calender"
 import Home from "./pages/home"
 import DoctorProfile from './pages/doctorProfile';
 import CommonLogin from './pages/commonLogin';
+import DoctorLogin from './pages/doctorLogin';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/appointment' element={<Appointment />} />
           <Route path='/doctorProfile' element={<DoctorProfile />} />
           <Route path='/commonLogin' element={<CommonLogin />} />
+          <Route path='/doctorLogin' element={<DoctorLogin />} />
         </Routes>
       </Router>
       </div>

@@ -1,15 +1,17 @@
 import './commonLogin.css';
+import { useNavigate } from 'react-router-dom';
 import doctor from '../doctor1.jpeg';
 import patient from '../doctor3.jpeg';
 
 function CommonLogin() {
+    const navigate = useNavigate();
   return (
     <div className="common-login-container">
       <h2>Choose Account Type</h2>
       <div className="account-options">
         <div className="account-option">
           <img src={doctor} alt="Doctor" className="account-image" />
-          <button className="account-button">Doctor</button>
+          <button className="account-button" onClick={() => navigate('/doctorLogin')}>Doctor</button>
         </div>
         <div className="account-option">
           <img src={patient} alt="Patient" className="account-image" />

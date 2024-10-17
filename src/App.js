@@ -15,7 +15,6 @@ import DoctorSignUp from './pages/doctorSignUp';
 function App() {
   return (
     <div className="App">
-      <div className ='NavBar'>
       <Router>
       <Navbar/>
       <Routes>
@@ -31,7 +30,6 @@ function App() {
           <Route path = '/doctorSignUp' element = {<DoctorSignUp/>}/>
         </Routes>
       </Router>
-      </div>
     </div>
   );
 }

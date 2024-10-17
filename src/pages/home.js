@@ -15,7 +15,9 @@ function Home() {
         <img className='profile-add' src = {icon} alt = 'dummy'></img>
         <h1 className='medinexus'>MediNexus</h1>
         <div className='tagline'>Enter tagline here.</div>
+        <a href='/commonLogin'>
         <button className='login-button'>Login</button>
+        </a>
         </div>
         <div className='stock'>
         <img className='stock1' src = {homepage3} alt = 'stock'></img>

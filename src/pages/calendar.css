@@ -1,7 +1,7 @@
 .calendar {
     background-color: #e3e6e0;
     display: flex;
-    height: calc(100vh - 75px);
+    height: 90vh;
     width: 100vw;
     flex-direction: column;
     align-items: center;

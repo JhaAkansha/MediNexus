@@ -28,7 +28,7 @@
     width: 60%;
   }
   
-  input {
+  .email, .password {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -43,7 +43,7 @@
     color: #16423c;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     border: 2px solid #16423c;
     transition: background-color 0.2s ease-in-out;
     width: 50%;
@@ -57,6 +57,31 @@
   a {
     color: #3498db;
     text-decoration: none;
+  }
+
+  .alt-login-opts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 2px solid #16423c;
+    background: #b0b0b064;
+  }
+  .text {
+    color: #16423c;
+    padding: 10px;
+  }
+
+  .or {
+    color: #16423c;
+    padding: 30px;
+  }
+
+  .google-icon {
+    width: 25px;
+    height: 25x;
+    padding: 10px;
   }
 
   .forgot_password {
@@ -87,7 +112,7 @@
   }
 
   .sign-up {
-    font-size: 16px;
+    font-size: 20px;
     margin: 10px;
     background: content-box;
     border-width: 2px;

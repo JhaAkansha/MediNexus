@@ -2,11 +2,11 @@
 
 .services-container {
     text-align: center;
-    padding: 20px;
+    height: 90vh; /*total height = 100vh, navbar = 10vh */
 }
 
 .services-heading {
-    color: #e3e6e0;
+    color: #16423c;
 }
 
 .services-grid {

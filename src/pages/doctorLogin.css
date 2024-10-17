@@ -3,7 +3,6 @@ body {
     background-color: #16423c; /* Dark green background */
     color: #fff; /* White text */
     margin: 0;
-    padding: 20px;
     display: flex;
     justify-content: center; /* Center the login container horizontally */
   }

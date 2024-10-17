@@ -7,7 +7,7 @@ function CommonLogin() {
     const navigate = useNavigate();
   return (
     <div className="common-login-container">
-      <h2>Choose Account Type</h2>
+      <h2 className='cmn_lgn_heading'>Choose Account Type</h2>
       <div className="account-options">
         <div className="account-option">
           <img src={doctor} alt="Doctor" className="account-image" />

@@ -1,18 +1,17 @@
-.doctor-login{
+.doctor-sign-up{
     height: 100vh;
     font-family: Arial, sans-serif;
     background-color: #fff; /* Dark green background */
     display: flex;
   }
   
-  .login-container {
+  .sign-up-container {
     width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    background-color: #fff; /* White background for the login form */
-    border-radius: 10px; /* Rounded corners for a modern look */
+    background-color: #fff;
+    border-radius: 10px;
   }
   
   h2 {
@@ -37,7 +36,7 @@
     background-color: #b0b0b064;
   }
   
-  .login {
+  .signup {
     background: content-box;
     border: 2px;
     color: #16423c;
@@ -49,12 +48,12 @@
     width: 50%;
   }
   
-  .login:hover {
+  .signup:hover {
     background-color: #16423c;
     color: #e3e6e0;
   }
-  
-  .alt-login-opts {
+
+  .alt-sign-up-opts {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -85,19 +84,19 @@
     font-size: 14px;
   }
 
-  .content {
+  .sign-up-content {
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #16423c; /* White background for the login form */
-    color: #e3e6e0;
-    border-top-left-radius: 80px;
-    border-bottom-left-radius: 80px;
     justify-content: center;
+    background-color: #16423c;
+    color: #e3e6e0;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
   }
 
-  .hello {
+  .welcome {
     color: #e3e6e0;
   }
 
@@ -106,7 +105,7 @@
     text-align: center;
   }
 
-  .sign-up {
+  .sign-in {
     font-size: 20px;
     margin: 10px;
     background: content-box;
@@ -114,9 +113,10 @@
     color: #e3e6e0;
     border-radius: 5px;
     width: 50%;
+    margin: 10px;
   }
 
-  .sign-up:hover {
+  .sign-in:hover {
     background-color: #e3e6e0;
     color: #16423c;
     cursor: pointer;

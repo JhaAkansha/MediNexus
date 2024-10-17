@@ -10,6 +10,7 @@ import Home from "./pages/home"
 import DoctorProfile from './pages/doctorProfile';
 import CommonLogin from './pages/commonLogin';
 import DoctorLogin from './pages/doctorLogin';
+import DoctorSignUp from './pages/doctorSignUp';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/doctorProfile' element={<DoctorProfile />} />
           <Route path='/commonLogin' element={<CommonLogin />} />
           <Route path='/doctorLogin' element={<DoctorLogin />} />
+          <Route path = '/doctorSignUp' element = {<DoctorSignUp/>}/>
         </Routes>
       </Router>
       </div>

@@ -7,15 +7,6 @@
   font-size: calc(10px + 2vmin);
 }
 
-/* .NavBar {
-  background-color: #16423c;
-  color: #e3e6e0;
-  width: 100vw;
-  height: 10vh;
-  display: inline-block;
-  vertical-align: top;
-} */
-
 .NavButtons {
   background-color: #16423c;
   color: #e3e6e0;

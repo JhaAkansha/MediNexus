@@ -33,11 +33,11 @@ function DoctorLogin() {
     setInProp(false);
     setTimeout(() => {
       navigate('/doctorSignUp');
-    }, 200);
+    }, 300);
   };
 
   return (
-    <CSSTransition in={inProp} timeout={200} classNames="fade" appear>
+    <CSSTransition in={inProp} timeout={300} classNames="fade" appear>
     <div className='doctor-login'>
       <div className="login-container">
         <h2>Sign In</h2>

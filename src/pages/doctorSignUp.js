@@ -11,7 +11,7 @@ function DoctorSignUp() {
     setInProp(false);
     setTimeout(() => {
       navigate('/doctorLogin');
-    }, 200);
+    }, 300);
   };
 
   const handleSubmit = (event) => {
@@ -37,7 +37,7 @@ function DoctorSignUp() {
   };
 
   return (
-    <CSSTransition in={inProp} timeout={200} classNames="fade" appear>
+    <CSSTransition in={inProp} timeout={300} classNames="fade" appear>
       <div className='doctor-sign-up'>
         <div className='sign-up-content'>
           <h2 className='welcome'>Welcome Back!</h2>

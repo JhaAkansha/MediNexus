@@ -1,61 +1,62 @@
-/* AppointmentForm.css */
 .appointment {
   width: 100vw;
   height: 100vh;
   background-color: #e3e3e3;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .form-container {
   width: 60vw;
+  height: fit-content;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: 20px;
-  }
+  padding: 20px;
+}
   
-  .appointment-heading {
-    margin-bottom: 20px;
-    color: #333;
-  }
+.appointment-heading {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: larger;
+}
   
-  .inside-form {
-    width: 100%;
-    padding: 0px 20px 20px 20px;
-  }
+.inside-form {
+  width: 100%;
+  padding: 0px 20px 20px 20px;
+}
 
-  label {
-    display: block;
-    text-align: left;
-    margin: 10px 0 5px;
-    color: #666;
-  }
+label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  color: #666;
+}
   
-  input, select{
-    display: flex;
-    align-items: center;
-    width: 85%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
+input, select {
+  display: flex;
+  align-items: center;
+  width: 85%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
   
-  .submit-button {
-    padding: 5px;
-    border-radius: 6px;
-    border-width: 2px;
-    border-color: #16423c;
-    color: #16423c;
-    background: #e3e6e0;
-  }
+.submit-button {
+  padding: 5px;
+  border-radius: 6px;
+  border-width: 2px;
+  border-color: #16423c;
+  color: #16423c;
+  background: #e3e6e0;
+  cursor: pointer;
+}
   
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
+.submit-button:hover {
+  background-color: #16423c;
+  color: #e3e3e3;
+}

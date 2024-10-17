@@ -1,5 +1,6 @@
 .doctor-sign-up{
-    height: 100vh;
+    height: 90vh;
+    width: 100vw;
     font-family: Arial, sans-serif;
     background-color: #fff; /* Dark green background */
     display: flex;

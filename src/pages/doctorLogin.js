@@ -27,16 +27,21 @@ function DoctorLogin() {
   };
 
   return (
+    <div className='doctor-login'>
     <div className="login-container">
-      <h2>Doctor Login</h2>
+      <h2>Sign In</h2>
       <form id="doctorLoginForm" onSubmit={handleSubmit}>
-        <label for="doctorEmail">Email:</label>
-        <input type="email" id="doctorEmail" name="doctorEmail" required />
-        <label for="doctorPassword">Password:</label>
-        <input type="password" id="doctorPassword" name="doctorPassword" required />
-        <button type="submit">Login</button>
+        <input placeholder = 'Email' type="email" id="doctorEmail" name="doctorEmail" required />
+        <input placeholder = 'Password' type="password" id="doctorPassword" name="doctorPassword" required />
+        <div className='forgot_password'>Forgot Password?</div>
+        <button className="login">Login</button>
       </form>
-      <p>No account? <a href="#">Sign Up</a></p>
+    </div>
+    <div className='content'>
+      <h2 className='hello'> Hello, Friend!</h2>
+      <div className='para'>Register with your personal details to use all site features.</div>
+      <button className='sign-up'> Sign Up</button>
+    </div>
     </div>
   );
 }

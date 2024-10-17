@@ -1,4 +1,4 @@
-import '../App.css';
+import './home.css';
 import icon from '../profile-add.svg';
 import homepage3 from '../homepage3.jpg';
 // import homepage1 from './homepage1.jpg';
@@ -9,7 +9,7 @@ import homepage3 from '../homepage3.jpg';
 
 function Home() {
     return (
-      <div className="App">
+      <div className="Home">
         <div className='container'>
       <div className='title'>
         <img className='profile-add' src = {icon} alt = 'dummy'></img>

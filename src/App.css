@@ -7,30 +7,41 @@
   font-size: calc(10px + 2vmin);
 }
 
-.NavBar {
+/* .NavBar {
   background-color: #16423c;
   color: #e3e6e0;
   width: 100vw;
   height: 10vh;
   display: inline-block;
   vertical-align: top;
-}
+} */
 
 .NavButtons {
-  list-style-type: none; /* Removes bullet points */
-  display: flex; /* Aligns items in a row */
-  gap: 15px; /* Adds space between items */
-  justify-content: flex-end; /*ALign content to the right end */
+  background-color: #16423c;
+  color: #e3e6e0;
+  width: 100vw;
+  height: 10vh;
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
   padding-inline-end: 20px;
+  margin:0px;
+  padding: 0px;
+}
+
+.NavButtons li:last-child {
+  margin-right: 20px;
 }
 
 .NavButtons li {
-  display: inline; /* Ensures list items are inline */
+  display: inline;
+  align-content: center;
 }
 
 .NavButtons a {
-  text-decoration: none; /* Removes underline from links */
-  color: #e3e6e0; /* Changes link color */
+  text-decoration: none;
+  color: #e3e6e0;
   font-weight: bold;
 }
 

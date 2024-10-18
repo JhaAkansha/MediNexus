@@ -15,7 +15,32 @@
     background-color: #fff;
     border-radius: 10px;
   }
+
+  .user-type {
+    display: flex;
+    gap: 50px;
+  }
+
+  .doctor, .patient {
+    font-size: 16px;
+    color: #16423c;
+    margin: 10px;
+    border: 2px solid #16423c;
+    padding: 10px;
+    background-color: #6a9c89b5;
+    width: 15vw;
+  }
   
+  .doctor:hover, .patient:hover {
+    background-color: #6a9c89;
+    cursor: pointer;
+  }
+
+  .doctor:focus, .patient:focus {
+    background-color: #16423c;
+    color: #e3e6e0;
+  }
+
   h2 {
     text-align: center;
     margin-bottom: 20px;

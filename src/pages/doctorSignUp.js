@@ -6,12 +6,17 @@ import { useState } from 'react';
 function DoctorSignUp() {
   const navigate = useNavigate();
   const [inProp, setInProp] = useState(true);
+  const [userType, setUserType] = useState('patient');
 
   const handleSignInClick = () => {
     setInProp(false);
     setTimeout(() => {
       navigate('/doctorLogin');
     }, 300);
+  };
+
+  const handleUserTypeChange = (type) => {
+    setUserType(type);
   };
 
   const handleSubmit = (event) => {
@@ -46,8 +51,8 @@ function DoctorSignUp() {
         </div>
         <div className="sign-up-container">
         <div className='user-type'>
-            <button className='doctor'>Doctor</button>
-            <button className='patient'>Patient</button>
+            <button className={`doctor ${userType === 'doctor' ? 'active' : ''}`} onClick={() => handleUserTypeChange('doctor')}>Doctor</button>
+            <button className={`patient ${userType === 'patient' ? 'active' : ''}`}  onClick={() => handleUserTypeChange('patient')}>Patient</button>
         </div>
           <h2>Sign Up</h2>
           <form id="doctorSignUpForm" onSubmit={handleSubmit}>

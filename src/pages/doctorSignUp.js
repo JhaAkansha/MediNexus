@@ -45,6 +45,10 @@ function DoctorSignUp() {
           <button className='sign-in' onClick={handleSignInClick}>Sign In</button>
         </div>
         <div className="sign-up-container">
+        <div className='user-type'>
+            <button className='doctor'>Doctor</button>
+            <button className='patient'>Patient</button>
+        </div>
           <h2>Sign Up</h2>
           <form id="doctorSignUpForm" onSubmit={handleSubmit}>
             <div className='alt-sign-up-opts'>

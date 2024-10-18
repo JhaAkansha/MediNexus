@@ -29,7 +29,7 @@
     width: 60%;
   }
   
-  .email, .password {
+  .email, .password, .set-password {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -48,6 +48,7 @@
     border: 2px solid #16423c;
     transition: background-color 0.2s ease-in-out;
     width: 50%;
+    margin: 20px;
   }
   
   .signup:hover {

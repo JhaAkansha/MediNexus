@@ -56,6 +56,7 @@ function DoctorSignUp() {
             <div className='or'>or</div>
             <input placeholder='Email' className='email' type="email" id="doctorEmail" name="doctorEmail" required />
             <input placeholder='Password' className='password' type="password" id="doctorPassword" name="doctorPassword" required />
+            <input placeholder='Confirm Password' className='set-password' type="password" id="setPassword" name="setPassword" required />
             <button className="signup" type="submit">Sign Up</button>
           </form>
         </div>

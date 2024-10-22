@@ -7,27 +7,34 @@
   font-size: calc(10px + 2vmin);
 }
 
-.NavButtons {
+.home-button {
+  min-width: 20px;
+  min-height: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 10px 20px;
+}
+
+.NavbarContainer {
   background-color: #16423c;
   color: #e3e6e0;
   width: 100vw;
   height: 10vh;
-  list-style-type: none;
   display: flex;
-  gap: 15px;
-  justify-content: flex-end;
-  padding-inline-end: 20px;
-  margin:0px;
-  padding: 0px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.NavButtons li:last-child {
-  margin-right: 20px;
+.NavButtons {
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0 20px;
+  list-style-type: none;
 }
 
 .NavButtons li {
   display: inline;
-  align-content: center;
 }
 
 .NavButtons a {
@@ -35,4 +42,3 @@
   color: #e3e6e0;
   font-weight: bold;
 }
-

@@ -28,7 +28,7 @@ const doctors = [ // Array of doctor objects
 function DoctorProfile() {
   return (
     <div className="DoctorProfile">
-      <h2>Meet Our Doctors</h2>
+      <h2 className = 'doctor-prof-heading'>Meet Our Doctors</h2>
       <div className="doctor-container">
         {doctors.map((doctor, index) => (
           <div key={index} className="doctor-card">

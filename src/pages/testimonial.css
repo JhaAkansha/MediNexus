@@ -43,4 +43,17 @@
     font-style: italic;
     color: #555;
   }
-  
+
+  .add-review {
+    margin: 40px;
+    padding: 10px;
+    background-color: #16423c;
+    color: #e3e6e0;
+    border-radius: 6px;
+  }
+
+  .add-review:hover {
+    background-color: #6a9c89;
+    color: white;
+    cursor: pointer;
+  }

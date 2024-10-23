@@ -11,6 +11,7 @@ import DoctorProfile from './pages/doctorProfile';
 import CommonLogin from './pages/commonLogin';
 import DoctorLogin from './pages/doctorLogin';
 import DoctorSignUp from './pages/doctorSignUp';
+import AddReview from './pages/addReview'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/commonLogin' element={<CommonLogin />} />
           <Route path='/doctorLogin' element={<DoctorLogin />} />
           <Route path = '/doctorSignUp' element = {<DoctorSignUp/>}/>
+          <Route path = '/addReview' element = {<AddReview/>}></Route>
         </Routes>
       </Router>
     </div>

@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import './addReview.css';
 
 function AddReview() {
+
+  const [formData, setFormData] = useState ({
+    dcotor: '',
+    experience:'',
+  });
+
+  const handleChange = (e) => {
+    setFormData(...formData);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,7 +30,15 @@ function AddReview() {
       <div className="review-container">
         <h2 className='review-heading'>Let us know about your experience!</h2>
         <form id="reviewForm" onSubmit={handleSubmit}>
-            
+          <label>Who treated you?</label>
+          <select name="doctor" value={formData.doctor} onChange={handleChange} required>
+            <option value="">Select Doctor</option>
+            <option value="Dr. John Doe">Dr. John Doe</option>
+            <option value="Dr. Jane Smith">Dr. Jane Smith</option>
+            <option value="Dr. Michael Lee">Dr. Michael Lee</option>
+          </select>
+          <label>How satisfied were you with the service?</label>
+          <label>How was your experience with the doctor?</label>
         </form>
       </div>
   );

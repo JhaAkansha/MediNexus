@@ -29,7 +29,7 @@ function AddReview() {
   return (
       <div className="review-container">
         <h2 className='review-heading'>Let us know about your experience!</h2>
-        <form id="reviewForm" onSubmit={handleSubmit}>
+        <form className="reviewForm" onSubmit={handleSubmit}>
           <label>Who treated you?</label>
           <select name="doctor" value={formData.doctor} onChange={handleChange} required>
             <option value="">Select Doctor</option>

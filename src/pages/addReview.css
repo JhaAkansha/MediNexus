@@ -1,17 +1,28 @@
 .review-container{
-    height: 90vh;
-    width: 100vw;
-    font-family: Arial, sans-serif;
-    background-color: #e3e6e0; /* Dark green background */
-    display: flex;
-    flex-direction: column;
+  width: 100vw;
+  height: 90vh;
+  background-color: #e3e6e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
 
-  .review-heading {
-    font-size: 40px;
+  .review-form {
+    width: 60vw;
+    height: fit-content;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
   }
 
+  .review-heading {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: larger;
+  }
+
   .reviewForm {
-    min-width: 100vw;
+    width: 100%;
+    padding: 0px 20px 20px 20px;
   }

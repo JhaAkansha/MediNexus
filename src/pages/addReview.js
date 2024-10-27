@@ -37,6 +37,7 @@ function AddReview() {
           </select>
           <label>How satisfied were you with the service?</label>
           <label>How was your experience with the doctor?</label>
+          <textarea type = "text" name = 'experience' className='review-content' value={formData.experience} onChange = {handleChange}></textarea>
           <button className= 'submit-button' type="submit">Submit</button>
         </form>
         </div>

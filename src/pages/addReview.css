@@ -1,6 +1,6 @@
 .review-container{
-  width: 100vw;
-  height: 90vh;
+  min-width: 100vw;
+  min-height: 90vh;
   background-color: #e3e6e0;
   display: flex;
   justify-content: center;
@@ -38,9 +38,19 @@
 
   .customer-satisfaction {
     display: flex;
+    gap: 20%;
   }
 
-  .icon {
-    width: 20px;
-    height: 20px;
-  }
+  .hidden-radio {
+  display: none; /* Hides the radio input */
+}
+
+.icon svg {
+  width: 200%;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.icon input:checked + svg {
+  fill: #16423c; /* Change the color when selected */
+}

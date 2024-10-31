@@ -31,9 +31,15 @@
     display: block;
     text-align: left;
     margin: 10px 0 5px;
-    color: #666;
+    color: black;
     height: 15vh;
     width: 100%;
+    resize: none;
+    border-radius: 6px;
+  }
+
+  .review-content::placeholder{
+    font-style: italic;
   }
 
   .customer-satisfaction {

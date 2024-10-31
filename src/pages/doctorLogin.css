@@ -37,6 +37,11 @@
     font-size: 16px;
     background-color: #b0b0b064;
   }
+
+  .email:invalid:focus {
+    border: 2px red solid;
+    outline: none;
+  }
   
   .login {
     background: content-box;

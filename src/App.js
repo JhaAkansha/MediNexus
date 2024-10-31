@@ -1,5 +1,4 @@
 import './App.css';
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar"
 import About from "./pages/about"
@@ -14,9 +13,10 @@ import DoctorLogin from './pages/doctorLogin';
 import DoctorSignUp from './pages/doctorSignUp';
 import AddReview from './pages/addReview';
 import PrivateRoute from './PrivateRoute.js';
+import useToken from './useToken.js';
 
 function App() {
-  const [token, setToken] = useState(null);
+  const {token, setToken} = useToken();
 
   return (
     <div className="App">

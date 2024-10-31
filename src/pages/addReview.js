@@ -103,7 +103,15 @@ function AddReview() {
             }
             </div>
           <label>How was your experience with the doctor?</label>
-          <textarea type = "text" name = 'experience' className='review-content' value={formData.experience} onChange = {handleChange}></textarea>
+          <textarea
+            type = "text"
+            name = 'experience'
+            className='review-content'
+            value={formData.experience}
+            onChange = {handleChange}
+            autoCapitalize = "sentences"
+            placeholder='Describe your experience'>
+            </textarea>
           <button className= 'submit-button' type="submit">Submit</button>
         </form>
         </div>

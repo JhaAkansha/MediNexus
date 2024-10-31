@@ -28,6 +28,7 @@ export default function DoctorLogin( { setToken } ) {
       password
     });
     setToken(token);
+    navigate('/');
   };
 
   const handleSignUpClick = () => {

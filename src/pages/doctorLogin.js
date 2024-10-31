@@ -23,21 +23,6 @@ export default function DoctorLogin( { setToken } ) {
 
   const handleSubmit = async event => {
     event.preventDefault();
-
-    // Validate form inputs (add your validation logic here)
-    if (!email || !password) {
-      alert('Please fill in all fields.');
-      return;
-    }
-
-    // // Replace this with your actual login logic (e.g., API call, local storage)
-    // if (email === 'valid@email.com' && password === 'validpassword') { // Example validation
-    //   alert('Login successful!');
-    //   navigate('/dashboard'); // Replace with your desired redirect path
-    // } else {
-    //   alert('Invalid email or password.');
-    // }
-
     const token = await loginUser({
       email,
       password

@@ -1,18 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './doctorLogin.css';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
+import './doctorLogin.css';
 
-function DoctorLogin() {
+async function loginUser(credentials) {
+  return fetch('http://localhost:8080/doctorLogin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+ 
+export default function DoctorLogin( { setToken } ) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const [inProp, setInProp] = useState(true);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
-    // Get form data
-    const email = document.getElementById('doctorEmail').value;
-    const password = document.getElementById('doctorPassword').value;
 
     // Validate form inputs (add your validation logic here)
     if (!email || !password) {
@@ -20,13 +30,19 @@ function DoctorLogin() {
       return;
     }
 
-    // Replace this with your actual login logic (e.g., API call, local storage)
-    if (email === 'valid@email.com' && password === 'validpassword') { // Example validation
-      alert('Login successful!');
-      navigate('/dashboard'); // Replace with your desired redirect path
-    } else {
-      alert('Invalid email or password.');
-    }
+    // // Replace this with your actual login logic (e.g., API call, local storage)
+    // if (email === 'valid@email.com' && password === 'validpassword') { // Example validation
+    //   alert('Login successful!');
+    //   navigate('/dashboard'); // Replace with your desired redirect path
+    // } else {
+    //   alert('Invalid email or password.');
+    // }
+
+    const token = await loginUser({
+      email,
+      password
+    });
+    setToken(token);
   };
 
   const handleSignUpClick = () => {
@@ -49,8 +65,23 @@ function DoctorLogin() {
             <div className='text'>Sign in using Google</div>
           </div>
           <div className='or'>or</div>
-          <input placeholder='Email' className='email' type="email" id="doctorEmail" name="doctorEmail" required />
-          <input placeholder='Password' className='password' type="password" id="doctorPassword" name="doctorPassword" required />
+          <input
+            placeholder='Email'
+            className='email'
+            type="email" id="doctorEmail"
+            name="doctorEmail"
+            onChange={e=>setEmail(e.target.value)}
+            required
+          />
+          <input
+            placeholder='Password'
+            className='password'
+            type="password"
+            id="doctorPassword"
+            name="doctorPassword"
+            onChange={e=>setPassword(e.target.value)}
+            required
+          />
           <div className='forgot_password'>Forgot Password?</div>
           <button className="login">Login</button>
         </form>
@@ -65,4 +96,6 @@ function DoctorLogin() {
   );
 }
 
-export default DoctorLogin;
+DoctorLogin.propTypes = {
+  setToken: PropTypes.func.isRequired
+}

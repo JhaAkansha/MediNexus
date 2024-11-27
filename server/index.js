@@ -23,6 +23,8 @@ app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
 })
 
-const routes = require('./routes/routes');
+const routes_user = require('./routes/routes_user');
+const routes_appointment = require('./routes/routes_appointment');
 
-app.use('/api', routes)
+app.use('/api', routes_user)                //for user name and password
+app.use('/appt', routes_appointment)        //for apppointment data

@@ -1,0 +1,207 @@
+/* General Dashboard Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #16423c;
+    color: #ffffff;
+  }
+  
+  .dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .action-buttons button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #2a6156;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-buttons button:hover {
+    background-color: #1d4e43;
+  }
+  
+  /* Edit Section */
+  .edit-section {
+    background-color: #1e5a4f;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .edit-section h4 {
+    margin-bottom: 10px;
+  }
+  
+  .edit-section form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-section label {
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .edit-section input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .save-button {
+    background-color: #279e7a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #1c7e60;
+  }
+  
+  /* Calendar Section */
+  .calendar-section {
+    background-color: #1e5a4f;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .calendar-section h4 {
+    margin-bottom: 10px;
+  }
+  
+  /* Quick Stats */
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .stat {
+    display: flex;
+    align-items: center;
+    background-color: #2a6156;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .stat .icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  .welcome-section h3{
+    color: #2a6156;
+  }
+  .welcome-section p{
+    color: #2a6156;
+  }
+
+  .stat h4 {
+    font-size: 1rem;
+    margin: 0;
+  }
+  .details p{
+    color: aliceblue;
+  }
+  .stat p {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  /* Appointments and Operations Sections */
+  .main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+  }
+  
+  .appointments-section,
+  .operations-section,
+  .patients-section {
+    background-color: #1e5a4f;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  h4 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .tabs span {
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: #16423c;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tabs span.active {
+    background-color: #279e7a;
+    font-weight: bold;
+  }
+  
+  .content-box {
+    background-color: #2a6156;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .content-box p {
+    margin: 0;
+  }
+  
+  /* Patients Section */
+  .patients-section {
+    grid-column: span 2;
+  }
+  
+  .patient-box {
+    background-color: #2a6156;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .patient-box:hover {
+    background-color: #1d4e43;
+  }
+  

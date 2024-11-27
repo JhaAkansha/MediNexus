@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../models/model');
+const Model = require('../models/model_appointment');
 
 const router = express.Router()
 
@@ -9,7 +9,10 @@ module.exports = router;
 router.post('/post', async (req, res) => {
     const data = new Model({
         name: req.body.name,
-        password: req.body.password
+        phoneNumber: req.body.phoneNumber,
+        appointmentDate: req.body.appointmentDate,
+        preferredTime: req.body.preferredTime,
+        doctor: req.body.doctor
     })
     try{
         const dataToSave = await data.save();

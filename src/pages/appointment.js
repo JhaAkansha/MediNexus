@@ -4,7 +4,6 @@ import './appointment.css';
 function Appointment() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
     date: '',
     time: '',
@@ -16,11 +15,41 @@ function Appointment() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, such as sending data to the backend or displaying an alert
-    alert('Appointment request submitted successfully!');
-    console.log(formData);
+
+    //Get Form data
+    const dataToServer = {
+      name: formData.name,
+      phoneNumber: formData.phone,
+      appointmentDate: formData.date,
+      preferredTime: formData.time,
+      doctor: formData.doctor
+    }
+
+    try {
+      //Making POST request to the backend
+      const response = await fetch ('http://localhost:3000/appt/post',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToServer),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Appointment booked!');
+      }
+      else {
+        alert(data.message || 'Sorry the request did not go through');
+      }
+    }
+    catch (error) {
+      console.error('Error:', error);
+      alert('Something went wrong, please try again');
+    }
   };
 
   return (
@@ -48,7 +77,7 @@ function Appointment() {
           <option value="Dr. Michael Lee">Dr. Michael Lee</option>
         </select>
         
-        <button className= 'submit-button' type="submit">Submit</button>
+        <button className= 'submit-button' type="submit" onClick={handleSubmit}>Submit</button>
       </form>
       </div>
     </div>

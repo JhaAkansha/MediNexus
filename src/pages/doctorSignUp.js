@@ -19,25 +19,60 @@ function DoctorSignUp() {
     setUserType(type);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Get form data
     const email = document.getElementById('doctorEmail').value;
     const password = document.getElementById('doctorPassword').value;
+    const confirmPassword = document.getElementById('setPassword').value;
 
     // Validate form inputs
     if (!email || !password) {
       alert('Please fill in all fields.');
       return;
     }
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
 
-    // Example validation
-    if (email === 'valid@email.com' && password === 'validpassword') {
-      alert('Registration successful!');
-      navigate('/dashboard'); // Replace with your desired redirect path
-    } else {
-      alert('Invalid email or password.');
+    // // Example validation
+    // if (email === 'valid@email.com' && password === 'validpassword') {
+    //   alert('Registration successful!');
+    //   navigate('/dashboard'); // Replace with your desired redirect path
+    // } else {
+    //   alert('Invalid email or password.');
+    // }
+
+    const formData = {
+      name: email,
+      password: password
+    };
+
+    try {
+      //Making POST request to the backend
+      const response = await fetch ('http://localhost:3000/api/post',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Registration successful!');
+        navigate('/');
+      }
+      else {
+        alert(data.message || 'Registration failed');
+      }
+    }
+    catch (error) {
+      console.error('Error:', error);
+      alert('Something went wrong, please try again');
     }
   };
 

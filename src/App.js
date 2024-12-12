@@ -17,37 +17,43 @@ import useToken from './useToken.js';
 import DoctorDashboard from './pages/doctorDashboard.js';
 
 function App() {
-  const {token, setToken} = useToken();
+  const {token, setToken, removeToken} = useToken();
 
   return (
     <div className="App">
       <Router>
       <Navbar/>
       <Routes>
-          <Route path = '/' element = {<Home setToken={setToken}/>} />
+          <Route path = '/' element = {<Home setToken={setToken} removeToken = {removeToken}/>} />
           <Route path='/about' element={<About />} />
-          <Route path='/calendar' element={
+          {/* <Route path='/calendar' element={
             <PrivateRoute token = {token}>
             <Calendar />
             </PrivateRoute>
-          } />
+          } /> */}
           <Route path='/services' element={<Services />} />
           <Route path='/testimonial' element={<Testimonial />} />
-          <Route path='/appointment' element={
+          {/* <Route path='/appointment' element={
             <PrivateRoute token = {token}>
               <Appointment />
               </PrivateRoute>
-          } />
+          } /> */}
           <Route path='/doctorProfile' element={<DoctorProfile />} />
           <Route path='/commonLogin' element={<CommonLogin />} />
           <Route path='/doctorLogin' element={<DoctorLogin setToken={setToken}/>} />
           <Route path = '/doctorSignUp' element = {<DoctorSignUp/>}/>
           <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
-          <Route path='/addReview' element={
+          {/* <Route path='/addReview' element={
             <PrivateRoute token={token}>
               <AddReview />
             </PrivateRoute>
-          } />        
+          } />         */}
+           {/* Protected Routes */}
+           <Route element={<PrivateRoute token={token} />}>
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/appointment" element={<Appointment />} />
+            <Route path="/addReview" element={<AddReview />} />
+          </Route>
         </Routes>
       </Router>
     </div>

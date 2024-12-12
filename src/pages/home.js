@@ -3,14 +3,13 @@ import icon from '../profile-add.svg';
 import homepage3 from '../homepage3.jpg';
 import { useNavigate } from 'react-router-dom';
 
-function Home({ setToken }) {
+function Home({ setToken, removeToken }) {
 
   const navigate = useNavigate();
 
   // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    setToken(null);
+    removeToken();
     navigate('/doctorLogin'); // Redirect to login page after logout
   };
     return (

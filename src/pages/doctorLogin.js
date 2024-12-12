@@ -34,7 +34,7 @@ export default function DoctorLogin( { setToken } ) {
       
       // If response is OK, return the token
       if (response.ok) {
-        console.log('Login Successful');
+        alert('Login Successful');
         return data.token; // Return the JWT token
       } else {
         alert(data.message || 'Login failed');

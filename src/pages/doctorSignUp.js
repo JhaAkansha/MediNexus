@@ -46,7 +46,7 @@ function DoctorSignUp() {
     // }
 
     const formData = {
-      name: email,
+      email: email,
       password: password
     };
 

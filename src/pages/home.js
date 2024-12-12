@@ -1,8 +1,18 @@
 import './home.css';
 import icon from '../profile-add.svg';
 import homepage3 from '../homepage3.jpg';
+import { useNavigate } from 'react-router-dom';
 
-function Home() {
+function Home({ setToken }) {
+
+  const navigate = useNavigate();
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setToken(null);
+    navigate('/doctorLogin'); // Redirect to login page after logout
+  };
     return (
       <div className="Home">
         <div className='container'>
@@ -10,9 +20,14 @@ function Home() {
         <img className='profile-add' src = {icon} alt = 'dummy'></img>
         <h1 className='medinexus'>MediNexus</h1>
         <div className='tagline'>Your Health, Organized.</div>
-        <a href='/doctorLogin'>
-        <button className='login-button'>Login</button>
-        </a>
+        {/* Check if the user is logged in and show either Login or Logout button */}
+        {localStorage.getItem('authToken') ? (
+            <button className='logout-button' onClick={handleLogout}>Logout</button>
+          ) : (
+            <a href='/doctorLogin'>
+              <button className='login-button'>Login</button>
+            </a>
+          )}
         </div>
         <div className='stock'>
         <img className='stock1' src = {homepage3} alt = 'stock'></img>

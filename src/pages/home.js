@@ -1,11 +1,6 @@
 import './home.css';
 import icon from '../profile-add.svg';
 import homepage3 from '../homepage3.jpg';
-// import homepage1 from './homepage1.jpg';
-// import homepage2 from './homepage2.jpg';
-// import instagram from '../instagram.svg';
-// import twitter from '../twitter.svg';
-// import facebook from '../facebook.svg';
 
 function Home() {
     return (

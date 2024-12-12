@@ -54,6 +54,21 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
+  .logout-button {
+    background-color: #6a9c89;
+    color:#16423c;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+    height: 40px;
+    width: 150px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
   
   .login-button:hover {
     background-color: #588272; /* Darker green on hover */

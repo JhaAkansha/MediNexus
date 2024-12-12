@@ -4,16 +4,16 @@ import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import './doctorLogin.css';
 
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/doctorLogin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
+// async function loginUser(credentials) {
+//   return fetch('http://localhost:8080/doctorLogin', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(credentials)
+//   })
+//     .then(data => data.json())
+//  }
  
 export default function DoctorLogin( { setToken } ) {
   const [email, setEmail] = useState();
@@ -21,49 +21,55 @@ export default function DoctorLogin( { setToken } ) {
   const [inProp, setInProp] = useState(true);
   const navigate = useNavigate();
 
-  // const loginUser = async (userCredentials) => {
-  //   try {
-  //     const response = await fetch('http://localhost:5000/auth/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(userCredentials),
-  //     });
-  //     const data = await response.json();
+  const loginUser = async (userCredentials) => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userCredentials),
+      });
+      const data = await response.json();
       
-  //     // If response is OK, return the token
-  //     if (response.ok) {
-  //       return data.token; // Return the JWT token
-  //     } else {
-  //       alert(data.message || 'Login failed');
-  //       return null;
-  //     }
-  //   } catch (error) {
-  //     console.error('Error during login:', error);
-  //     alert('Something went wrong. Please try again.');
-  //     return null;
-  //   }
-  // };
+      // If response is OK, return the token
+      if (response.ok) {
+        console.log('Login Successful');
+        return data.token; // Return the JWT token
+      } else {
+        alert(data.message || 'Login failed');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('Something went wrong. Please try again.');
+      return null;
+    }
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
-    const token = await loginUser({
-      email,
-      password
-    });
-    setToken(token);
-    navigate('/');
+    // const token = await loginUser({
+    //   email,
+    //   password
+    // });
+    // setToken(token);
+    // navigate('/');
 
-  //   const token = await loginUser({ email, password });
+    const userCredentials = {
+      email: email,
+      password: password,
+    }
+
+    const token = await loginUser(userCredentials);
     
-  //   if (token) {
-  //     // If token is received, set it in the parent component
-  //     setToken(token);
-  //     //store the token in localStorage for persistence
-  //     localStorage.setItem('authToken', token);
-  //     navigate('/');
-  //   }
+    if (token) {
+      // If token is received, set it in the parent component
+      setToken(token);
+      //store the token in localStorage for persistence
+      localStorage.setItem('authToken', token);
+      navigate('/');
+    }
   };
 
   const handleSignUpClick = () => {

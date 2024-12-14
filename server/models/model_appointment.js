@@ -11,7 +11,7 @@ const dataSchema = new mongoose.Schema({
     },
     appointmentDate: {
         required: true,
-        type: String      //Verify this
+        type: Date      //Verify this
     },
     preferredTime: {
         required: true,

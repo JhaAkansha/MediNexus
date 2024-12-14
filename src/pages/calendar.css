@@ -1,3 +1,4 @@
+<<<<<<< new-feature-branch
 .calendar {
     background-color: #e3e6e0;
     display: flex;
@@ -8,8 +9,22 @@
     font-size: calc(10px + 2vmin);
   }
 
+=======
+/* Overall Calendar Container */
+.calendar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #e3e6e0; /* Light grayish background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+>>>>>>> local
 
+/* Heading Styling */
 .calendar-heading {
+<<<<<<< new-feature-branch
     color: #16423c;
     font-size: larger;
     padding-top: 20px;
@@ -46,15 +61,62 @@
     color: black;
     text-align: center;
     padding-top:20px;
+=======
+  text-align: center;
+  font-size: 28px;
+  color: #16423c; /* Dark green */
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
-  background: #6a9c89;
-  color: white;
-  border-radius: 6px;
+/* Calendar Wrapper */
+.calendar-wrapper {
+  height: 80vh;
+  width: 100%;
+  padding: 10px;
+  background-color: #f4f4f4; /* Light gray background for better contrast */
+  border: 2px solid #cccccc; /* Darker border */
+  border-radius: 8px;
 }
 
+/* Calendar Header Styling */
+.rbc-toolbar {
+  background-color: #16423c; /* Dark green toolbar */
+  color: #ffffff; /* White text */
+  border-radius: 8px 8px 0 0;
+  padding: 8px;
+}
+
+.rbc-toolbar button {
+  background-color: #6a9c89; /* Light green buttons */
+  color: #ffffff;
+  border: 1px solid #444444;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 2px;
+  transition: background-color 0.3s;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #4f7c64; /* Darker hover effect */
+}
+
+/* Calendar Grid */
+.rbc-month-view,
+.rbc-time-view,
+.rbc-agenda-view {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+>>>>>>> local
+}
+
+/* Calendar Days and Events */
+.rbc-day-bg {
+  background-color: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+<<<<<<< new-feature-branch
 .react-calendar__month-view__days__day:hover{
   border-radius: 6px;
 }
@@ -98,3 +160,102 @@
     width: 80%;
     min-height: 50vh;
   }
+=======
+.rbc-day-bg:hover {
+  background-color: #e2e2e2; /* Hover effect for calendar days */
+}
+
+.rbc-event {
+  background-color: #6a9c89; /* Light green color for events */
+  color: #ffffff; /* White text for events */
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.rbc-selected {
+  background-color: #4f7c64 !important; /* Darker green for selected events */
+}
+
+/* Time Slot Colors */
+.rbc-time-content {
+  border: 1px solid #cccccc;
+}
+
+.rbc-time-slot {
+  border-top: 1px solid #dddddd;
+}
+
+/* Responsive Fix */
+@media screen and (max-width: 768px) {
+  .calendar-container {
+    padding: 10px;
+  }
+
+  .calendar-heading {
+    font-size: 22px;
+  }
+
+  .calendar-wrapper {
+    height: 70vh;
+  }
+
+  .rbc-toolbar button {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+/* Make dates bold and clear */
+.rbc-day-bg {
+  font-weight: bold; /* Bold text for dates */
+  font-size: 1.1rem;  /* Slightly larger font size */
+  color: #16423c; /* Dark green color for better visibility */
+}
+
+/* Hover effect for days */
+.rbc-day-bg:hover {
+  background-color: #e2e2e2; /* Light gray background on hover */
+}
+
+/* Styling for Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h3 {
+  margin: 0;
+  color: #16423c;
+}
+
+.popup-content p {
+  color: #333;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  color: #16423c;
+  font-weight: bold;
+}
+>>>>>>> local

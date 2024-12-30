@@ -23,12 +23,13 @@ function DoctorSignUp() {
     event.preventDefault();
 
     // Get form data
-    const email = document.getElementById('doctorEmail').value;
-    const password = document.getElementById('doctorPassword').value;
+    const name = document.getElementById('userName').value;
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
     const confirmPassword = document.getElementById('setPassword').value;
 
     // Validate form inputs
-    if (!email || !password) {
+    if (!name || !email || !password) {
       alert('Please fill in all fields.');
       return;
     }
@@ -46,6 +47,7 @@ function DoctorSignUp() {
     // }
 
     const formData = {
+      name: name,
       email: email,
       password: password,
       userType: userType
@@ -99,8 +101,9 @@ function DoctorSignUp() {
               <div className='text'>Sign up using Google</div>
             </div> */}
             <div className='or'>or</div>
-            <input placeholder='Email' className='email' type="email" id="doctorEmail" name="doctorEmail" required />
-            <input placeholder='Password' className='password' type="password" id="doctorPassword" name="doctorPassword" required />
+            <input placeholder='Name' className='name' type="name" id="userName" name="userName" required />
+            <input placeholder='Email' className='email' type="email" id="userEmail" name="userEmail" required />
+            <input placeholder='Password' className='password' type="password" id="userPassword" name="userPassword" required />
             <input placeholder='Confirm Password' className='set-password' type="password" id="setPassword" name="setPassword" required />
             <button className="signup" type="submit">Sign Up</button>
           </form>

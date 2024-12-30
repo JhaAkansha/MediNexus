@@ -7,32 +7,27 @@ const router = express.Router()
 
 module.exports = router;
 
-// Middleware to verify the token and extract user information
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-        return res.status(401).json({ message: 'No authorization header provided' });
-    }
-
-    const token = authHeader.split(' ')[1];
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1]; // Get token from the Authorization header
+    console.log("received token: ", token);
+  
     if (!token) {
-        return res.status(401).json({ message: 'Token not provided' });
+      return res.status(403).json({ message: 'No token provided' });
     }
-
+  
     try {
-        const secretKey = process.env.JWT_SECRET; // Replace with your JWT secret key
-        const decoded = jwt.verify(token, secretKey);
-        req.user = decoded; // Attach the decoded user info to the request
-        next();
-    } catch (error) {
-        return res.status(403).json({ message: 'Invalid token' });
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY); // Verify and decode the token
+      req.userId = decoded.userId; // Attach user ID to the request object
+      next(); // Pass control to the next middleware or route handler
+    } catch (err) {
+      return res.status(401).json({ message: 'Invalid token' }); // Invalid or expired token
     }
-};
+  };
 
 // Fetch appointments for the authenticated user
-router.get('/getUserAppointments', authenticateToken, async (req, res) => {
+router.get('/getUserAppointments', verifyToken, async (req, res) => {
     try {
-        const userId = req.user.id; // Extract user ID from the token
+        const userId = req.userId; // Extract user ID from the token
         const appointments = await Model.find({ userId });
 
         if (!appointments.length) {
@@ -53,7 +48,7 @@ router.post('/post', async (req, res) => {
         appointmentDate: req.body.appointmentDate,
         preferredTime: req.body.preferredTime,
         doctor: req.body.doctor,
-        userId: req.body.userId, // Ensure the frontend sends userId for this
+        userId: User._id, // Ensure the frontend sends userId for this
     })
     try{
         const dataToSave = await data.save();

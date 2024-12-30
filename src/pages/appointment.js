@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './appointment.css';
+import {jwtDecode} from 'jwt-decode';
 
 function Appointment() {
   const [doctors, setDoctors] = useState([]);
@@ -12,8 +13,11 @@ function Appointment() {
   });
 
   // Fetching the userId from localStorage (or sessionStorage) where the token is stored after login
-  const userId = localStorage.getItem('userId'); // Retrieve the userId after user login (you can extract this from the JWT token)
-
+  //const userId = localStorage.getItem('authToken'); // Retrieve the userId after user login (you can extract this from the JWT token)
+  const token = localStorage.getItem('authToken');
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.userId;
+  console.log(decodedToken.userId);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

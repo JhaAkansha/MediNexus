@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Modal from 'react-modal'; // For displaying appointment details
-import axios from 'axios'; // To make HTTP requests
 import './calendar.css'; // Your custom styles
 
 Modal.setAppElement('#root'); // Required for react-modal to work
@@ -12,27 +11,39 @@ const AppointmentCalendar = () => {
   const [selectedAppointment, setSelectedAppointment] = useState(null); // To store selected appointment details
   const [appointments, setAppointments] = useState([]); // Store appointments fetched from backend
 
-  const token = localStorage.getItem('token'); // Get the token from local storage or your global state
 
-  // Fetch appointments when the component mounts
   useEffect(() => {
-    if (token) {
-      axios
-        .get('http://localhost:5000/api/appointments/getUserAppointments', {
+    const fetchAppointment = async () => {
+      try {
+        const token = localStorage.getItem('authToken'); // Get the token from localStorage
+        console.log("sent token: ", token);
+        if (!token) {
+          console.error('No token found, please log in');
+          return; // Exit if there's no token
+        }
+  
+        const response = await fetch('http://localhost:3000/appt/getUserAppointments', {
+          method: 'GET', // Method for fetching appointments
           headers: {
-            Authorization: `Bearer ${token}`, // Pass token for authentication
+            'Authorization': `Bearer ${token}`, // Include token in the Authorization header
           },
-        })
-        .then((response) => {
-          setAppointments(response.data); // Set appointments to state
-        })
-        .catch((error) => {
-          console.error('Error fetching appointments:', error);
         });
-    } else {
-      console.error('No token found, please log in');
-    }
-  }, [token]);
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          setAppointments(data); // Set appointments to state
+        } else {
+          console.error('Error fetching appointments', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching appointment:', error);
+      }
+    };
+  
+    fetchAppointment(); // Call the fetch function
+  }, []);
+  
 
   // Function to handle date selection in the calendar
   const onDateChange = (newDate) => {

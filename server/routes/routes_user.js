@@ -5,10 +5,10 @@ const router = express.Router();
 
 // POST Method (Sign Up)
 router.post('/post', async (req, res) => {
-    const { email, password } = req.body;
+    const { name, email, password, userType } = req.body;
 
     // Basic validation
-    if (!email || !password) {
+    if (!name || !email || !password || !userType) {
         return res.status(400).json({ message: 'Email and password are required.' });
     }
 
@@ -21,8 +21,10 @@ router.post('/post', async (req, res) => {
 
         // Create a new user
         const newUser = new Model({
+            name,
             email,
-            password: password // Store the hashed password
+            password: password, // Store the hashed password,
+            userType
         });
 
         // Save the user to the database

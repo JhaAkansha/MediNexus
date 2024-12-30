@@ -23,12 +23,13 @@ function DoctorSignUp() {
     event.preventDefault();
 
     // Get form data
-    const email = document.getElementById('doctorEmail').value;
-    const password = document.getElementById('doctorPassword').value;
+    const name = document.getElementById('userName').value;
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
     const confirmPassword = document.getElementById('setPassword').value;
 
     // Validate form inputs
-    if (!email || !password) {
+    if (!name || !email || !password) {
       alert('Please fill in all fields.');
       return;
     }
@@ -46,8 +47,10 @@ function DoctorSignUp() {
     // }
 
     const formData = {
+      name: name,
       email: email,
-      password: password
+      password: password,
+      userType: userType
     };
 
     try {
@@ -91,15 +94,16 @@ function DoctorSignUp() {
         </div>
           <h2>Sign Up</h2>
           <form id="doctorSignUpForm" onSubmit={handleSubmit}>
-            <div className='alt-sign-up-opts'>
+            {/* <div className='alt-sign-up-opts'>
               <svg className='google-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
                 <path fill="#16423c" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
               </svg>
               <div className='text'>Sign up using Google</div>
-            </div>
+            </div> */}
             <div className='or'>or</div>
-            <input placeholder='Email' className='email' type="email" id="doctorEmail" name="doctorEmail" required />
-            <input placeholder='Password' className='password' type="password" id="doctorPassword" name="doctorPassword" required />
+            <input placeholder='Name' className='name' type="name" id="userName" name="userName" required />
+            <input placeholder='Email' className='email' type="email" id="userEmail" name="userEmail" required />
+            <input placeholder='Password' className='password' type="password" id="userPassword" name="userPassword" required />
             <input placeholder='Confirm Password' className='set-password' type="password" id="setPassword" name="setPassword" required />
             <button className="signup" type="submit">Sign Up</button>
           </form>

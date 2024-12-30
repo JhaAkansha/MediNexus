@@ -2,12 +2,21 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const dataSchema = new mongoose.Schema({
+    name: {
+        required: true,
+        type: String
+    },
     email: {
         required: true,
         type: String,
     },
     password: {
-        required: true,
+        required: false,
+        type: String
+    },
+    userType: {
+        required: false,
+        enum: ['doctor', 'patient'],
         type: String
     }
 })

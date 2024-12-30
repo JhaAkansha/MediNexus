@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
     }
   
     // Generate JWT token
-    const payload = { userId: user._id };
+    const payload = { userId: user._id, userType: user.userType };
     const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
   
     // Send token back to the client

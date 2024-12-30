@@ -3,6 +3,7 @@ import './appointment.css';
 
 function Appointment() {
   const [doctors, setDoctors] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -54,6 +55,25 @@ function Appointment() {
       alert('Something went wrong, please try again');
     }
   };
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/appt/getAll'); // Adjust your API URL
+        const data = await response.json();
+
+        if (response.ok) {
+          setDoctors(data); // Set the doctors state with the fetched doctors
+        } else {
+          console.error('Error fetching doctors:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    };
+
+    fetchDoctors(); // Call the fetch function
+  }, []);
 
   useEffect(() => {
     const fetchDoctors = async () => {

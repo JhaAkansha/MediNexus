@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import './doctorLogin.css';
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 // async function loginUser(credentials) {
 //   return fetch('http://localhost:8080/doctorLogin', {
@@ -14,7 +15,6 @@ import './doctorLogin.css';
 //   })
 //     .then(data => data.json())
 //  }
- 
 export default function DoctorLogin( { setToken } ) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -46,6 +46,39 @@ export default function DoctorLogin( { setToken } ) {
       return null;
     }
   };
+
+  // Google login response handler
+const responseGoogle = async (response) => {
+  if (response.credential) {
+    const userCredentials = { token: response.credential };
+
+    try {
+      const res = await fetch('http://localhost:3000/auth/google-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userCredentials),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setToken(data.token); // Set the JWT token
+        localStorage.setItem('authToken', data.token); // Store the token in localStorage
+        navigate('/'); // Redirect to the homepage or dashboard
+      } else {
+        alert('Google login failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during Google login:', error);
+      alert('Something went wrong during Google login. Please try again.');
+    }
+  } else {
+    alert('Google login failed. Please try again.');
+  }
+};
+
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -85,12 +118,22 @@ export default function DoctorLogin( { setToken } ) {
       <div className="login-container">
         <h2>Sign In</h2>
         <form id="doctorLoginForm" onSubmit={handleSubmit}>
-          <div className='alt-login-opts'>
+          {/* <div className='alt-login-opts'>
             <svg className='google-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
               <path fill="#16423c" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
             </svg>
             <div className='text'>Sign in using Google</div>
-          </div>
+          </div> */}
+          <GoogleOAuthProvider>
+            <GoogleLogin
+            client_id = "558473929617-qd1a51cu9vttfoflcn3gg7ebne2o7auu.apps.googleusercontent.com"
+            buttonText = "Login"
+            onSuccess = {responseGoogle}
+            onFailure = {responseGoogle}
+            cookiePolicy = {'single_host_origin'}
+            redirect_uri="http://localhost:3000/auth/google/callback"
+            />
+            </GoogleOAuthProvider>
           <div className='or'>or</div>
           <input
             placeholder='Email'

@@ -1,10 +1,49 @@
 const express = require('express');
 const Model = require('../models/model_appointment');
 const User = require('../models/model_user');
+const jwt = require('jsonwebtoken'); // Assuming JWT is used for user authentication
 
 const router = express.Router()
 
 module.exports = router;
+
+// Middleware to verify the token and extract user information
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).json({ message: 'No authorization header provided' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ message: 'Token not provided' });
+    }
+
+    try {
+        const secretKey = process.env.JWT_SECRET; // Replace with your JWT secret key
+        const decoded = jwt.verify(token, secretKey);
+        req.user = decoded; // Attach the decoded user info to the request
+        next();
+    } catch (error) {
+        return res.status(403).json({ message: 'Invalid token' });
+    }
+};
+
+// Fetch appointments for the authenticated user
+router.get('/getUserAppointments', authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id; // Extract user ID from the token
+        const appointments = await Model.find({ userId });
+
+        if (!appointments.length) {
+            return res.status(404).json({ message: 'No appointments found for this user' });
+        }
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 //Post Method
 router.post('/post', async (req, res) => {
@@ -13,7 +52,8 @@ router.post('/post', async (req, res) => {
         phoneNumber: req.body.phoneNumber,
         appointmentDate: req.body.appointmentDate,
         preferredTime: req.body.preferredTime,
-        doctor: req.body.doctor
+        doctor: req.body.doctor,
+        userId: req.body.userId, // Ensure the frontend sends userId for this
     })
     try{
         const dataToSave = await data.save();
@@ -74,8 +114,8 @@ router.patch('/update/:id', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const data = await Model.findByIdAndDelete(id)
-        res.send(`Document with ${data.name} has been deleted..`)
+        const data = await Model.findByIdAndDelete(id);
+        res.send(`Document with ${data.name} has been deleted..`);  // Corrected string interpolation
     }
     catch (error) {
         res.status(400).json({ message: error.message })

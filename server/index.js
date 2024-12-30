@@ -1,9 +1,8 @@
-require('dotenv').config({ path: '../.env' });
-
+require('dotenv').config(); // Ensure .env is loaded correctly
 
 const express = require('express');
 const mongoose = require('mongoose');
-const mongoString = process.env.DATABASE_URL;
+const mongoString = process.env.DATABASE_URL; // Get the database URL from .env file
 const app = express();
 app.use(express.json())
 
@@ -62,20 +61,17 @@ app.get('/profile', (req, res) => {
 });
   
 mongoose.connect(mongoString);
-const database = mongoose.connection; 
+const database = mongoose.connection;
 
 database.on('error', (error) => {
-    console.log(error)
-})
+  console.log(error);
+});
 
 database.once('connected', () => {
-    console.log('Database Connected');
-})
+  console.log('Database Connected');
+});
 
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
-})
-
+// Import routes
 const routes_user = require('./routes/routes_user');
 const routes_appointment = require('./routes/routes_appointment');
 const routes_auth = require('./routes/routes_auth');

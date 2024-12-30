@@ -11,7 +11,7 @@ const dataSchema = new mongoose.Schema({
     },
     appointmentDate: {
         required: true,
-        type: String      //Verify this
+        type: Date // Change from String to Date
     },
     preferredTime: {
         required: true,
@@ -20,7 +20,12 @@ const dataSchema = new mongoose.Schema({
     doctor: {
         required: true,
         type: String
+    },
+    userId: { // Adding userId to associate the appointment with a user
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Reference to the User model
+        required: true
     }
-})
+});
 
-module.exports = mongoose.model('appointment', dataSchema)
+module.exports = mongoose.model('appointment', dataSchema);

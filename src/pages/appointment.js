@@ -1,7 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import './appointment.css';
 
 function Appointment() {
+  const [doctors, setDoctors] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -52,6 +53,25 @@ function Appointment() {
     }
   };
 
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/appt/getAll'); // Adjust your API URL
+        const data = await response.json();
+
+        if (response.ok) {
+          setDoctors(data); // Set the doctors state with the fetched doctors
+        } else {
+          console.error('Error fetching doctors:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    };
+
+    fetchDoctors(); // Call the fetch function
+  }, []);
+
   return (
     <div className='appointment'>
     <div className="form-container">
@@ -72,9 +92,14 @@ function Appointment() {
         <label>Doctor:</label>
         <select name="doctor" value={formData.doctor} onChange={handleChange} required>
           <option value="">Select Doctor</option>
-          <option value="Dr. John Doe">Dr. John Doe</option>
+          {doctors.map((doctor) => (
+            <option key = {doctor._id} value = {doctor.name}>
+              {doctor.name}
+            </option>
+          ))}
+          {/* <option value="Dr. John Doe">Dr. John Doe</option>
           <option value="Dr. Jane Smith">Dr. Jane Smith</option>
-          <option value="Dr. Michael Lee">Dr. Michael Lee</option>
+          <option value="Dr. Michael Lee">Dr. Michael Lee</option> */}
         </select>
         
         <button className= 'submit-button' type="submit" onClick={handleSubmit}>Submit</button>

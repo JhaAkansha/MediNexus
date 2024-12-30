@@ -1,5 +1,6 @@
 const express = require('express');
 const Model = require('../models/model_appointment');
+const User = require('../models/model_user');
 
 const router = express.Router()
 
@@ -26,8 +27,13 @@ router.post('/post', async (req, res) => {
 //Get all Method
 router.get('/getAll', async (req, res) => {
     try{
-        const data = await Model.find();
-        res.json(data)
+        //const data = await Model.find();
+        const doctors = await User.find({ userType: 'doctor' });
+        if (!doctors.length) {
+            return res.status(404).json({ message: 'No doctors found.' });
+        }
+        res.status(200).json(doctors);
+        //res.json(data)
     }
     catch(error){
         res.status(500).json({message: error.message})

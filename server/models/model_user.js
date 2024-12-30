@@ -9,6 +9,11 @@ const dataSchema = new mongoose.Schema({
     password: {
         required: false,
         type: String
+    },
+    userType: {
+        required: false,
+        enum: ['doctor', 'patient'],
+        type: String
     }
 })
 

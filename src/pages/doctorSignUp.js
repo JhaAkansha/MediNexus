@@ -47,7 +47,8 @@ function DoctorSignUp() {
 
     const formData = {
       email: email,
-      password: password
+      password: password,
+      userType: userType
     };
 
     try {

@@ -3,7 +3,6 @@ import './appointment.css';
 
 function Appointment() {
   const [doctors, setDoctors] = useState([]);
-  const [doctors, setDoctors] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',

@@ -1,102 +1,123 @@
-import React, { useState, useEffect } from 'react';
-import Calendar from 'react-calendar';
-import Modal from 'react-modal'; // For displaying appointment details
-import axios from 'axios'; // To make HTTP requests
-import './calendar.css'; // Your custom styles
+const express = require('express');
+const Model = require('../models/model_appointment');
+const User = require('../models/model_user');
+const jwt = require('jsonwebtoken'); // Assuming JWT is used for user authentication
 
-Modal.setAppElement('#root'); // Required for react-modal to work
+const router = express.Router()
 
-const AppointmentCalendar = () => {
-  const [date, setDate] = useState(new Date());
-  const [isModalOpen, setIsModalOpen] = useState(false); // To control modal visibility
-  const [selectedAppointment, setSelectedAppointment] = useState(null); // To store selected appointment details
-  const [appointments, setAppointments] = useState([]); // Store appointments fetched from backend
+module.exports = router;
 
-  const token = localStorage.getItem('token'); // Get the token from local storage or your global state
-
-  // Fetch appointments when the component mounts
-  useEffect(() => {
-    if (token) {
-      axios
-        .get('http://localhost:5000/api/appointments/getUserAppointments', {
-          headers: {
-            Authorization: `Bearer ${token}`, // Pass token for authentication
-          },
-        })
-        .then((response) => {
-          setAppointments(response.data); // Set appointments to state
-        })
-        .catch((error) => {
-          console.error('Error fetching appointments:', error);
-        });
-    } else {
-      console.error('No token found, please log in');
+// Middleware to verify the token and extract user information
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).json({ message: 'No authorization header provided' });
     }
-  }, [token]);
 
-  // Function to handle date selection in the calendar
-  const onDateChange = (newDate) => {
-    setDate(newDate);
-
-    // Find the selected appointment for the chosen date
-    const selected = appointments.find(
-      (appointment) => new Date(appointment.appointmentDate).toLocaleDateString() === newDate.toLocaleDateString()
-    );
-
-    if (selected) {
-      setSelectedAppointment(selected); // Set the selected appointment to display in the modal
-      setIsModalOpen(true); // Open the modal to show appointment details
+    const token = authHeader.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ message: 'Token not provided' });
     }
-  };
 
-  // Close the modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedAppointment(null); // Reset the selected appointment when the modal is closed
-  };
-
-  // Get all appointment dates for highlighting in the calendar
-  const appointmentDates = appointments.map((appointment) =>
-    new Date(appointment.appointmentDate).toLocaleDateString()
-  );
-
-  return (
-    <div className="calendar">
-      <div className="calendar-heading">Appointments Calendar</div>
-      <div className="calendar-container">
-        <Calendar
-          onChange={onDateChange}
-          value={date}
-          tileClassName={({ date }) => {
-            // Highlight dates with appointments
-            const dateString = date.toLocaleDateString();
-            if (appointmentDates.includes(dateString)) {
-              return 'appointment-day'; // Add custom CSS class for highlighted days
-            }
-            return null;
-          }}
-        />
-      </div>
-
-      {/* Modal Popup to display appointment details */}
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Appointment Details"
-        className="modal"
-        overlayClassName="overlay"
-      >
-        <h3>Appointment Details</h3>
-        <div>
-          <p><strong>Name:</strong> {selectedAppointment?.name}</p>
-          <p><strong>Phone:</strong> {selectedAppointment?.phoneNumber}</p>
-          <p><strong>Time:</strong> {selectedAppointment?.preferredTime}</p>
-          <p><strong>Doctor:</strong> {selectedAppointment?.doctor}</p>
-        </div>
-        <button onClick={closeModal} className="close-modal-btn">Close</button>
-      </Modal>
-    </div>
-  );
+    try {
+        const secretKey = process.env.JWT_SECRET; // Replace with your JWT secret key
+        const decoded = jwt.verify(token, secretKey);
+        req.user = decoded; // Attach the decoded user info to the request
+        next();
+    } catch (error) {
+        return res.status(403).json({ message: 'Invalid token' });
+    }
 };
 
-export default AppointmentCalendar;
+// Fetch appointments for the authenticated user
+router.get('/getUserAppointments', authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id; // Extract user ID from the token
+        const appointments = await Model.find({ userId });
+
+        if (!appointments.length) {
+            return res.status(404).json({ message: 'No appointments found for this user' });
+        }
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+//Post Method
+router.post('/post', async (req, res) => {
+    const data = new Model({
+        name: req.body.name,
+        phoneNumber: req.body.phoneNumber,
+        appointmentDate: req.body.appointmentDate,
+        preferredTime: req.body.preferredTime,
+        doctor: req.body.doctor,
+        userId: req.body.userId, // Ensure the frontend sends userId for this
+    })
+    try{
+        const dataToSave = await data.save();
+        res.status(200).json(dataToSave)
+    }
+    catch(error){
+        res.status(400).json({message:error.message})
+    }
+})
+
+//Get all Method
+router.get('/getAll', async (req, res) => {
+    try{
+        //const data = await Model.find();
+        const doctors = await User.find({ userType: 'doctor' });
+        if (!doctors.length) {
+            return res.status(404).json({ message: 'No doctors found.' });
+        }
+        res.status(200).json(doctors);
+        //res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+//Get by ID Method
+router.get('/getOne/:id', async (req, res) => {
+    try{
+        const data = await Model.findById(req.params.id);
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+//Update by ID Method
+router.patch('/update/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        
+        const updatedData = req.body;
+        const options = { new: true };
+
+        const result = await Model.findByIdAndUpdate(
+            id, updatedData, options
+        )
+
+        res.send(result)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})
+
+//Delete by ID Method
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await Model.findByIdAndDelete(id);
+        res.send(`Document with ${data.name} has been deleted..`);  // Corrected string interpolation
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})

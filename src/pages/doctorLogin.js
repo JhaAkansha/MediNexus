@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import './doctorLogin.css';
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import {jwtDecode} from 'jwt-decode';
 
 // async function loginUser(credentials) {
 //   return fetch('http://localhost:8080/doctorLogin', {
@@ -64,9 +65,9 @@ const responseGoogle = async (response) => {
       const data = await res.json();
 
       if (res.ok) {
-        setToken(data.token); // Set the JWT token
-        localStorage.setItem('authToken', data.token); // Store the token in localStorage
-        navigate('/'); // Redirect to the homepage or dashboard
+        setToken(data.token);                             // Set the JWT token
+        localStorage.setItem('authToken', data.token);    // Store the token in localStorage
+        navigate('/');                                     // Redirect to the homepage or dashboard
       } else {
         alert('Google login failed. Please try again.');
       }
@@ -101,7 +102,16 @@ const responseGoogle = async (response) => {
       setToken(token);
       //store the token in localStorage for persistence
       localStorage.setItem('authToken', token);
-      navigate('/');
+      const decodedToken = jwtDecode(token);
+        const userType = decodedToken.userType;
+        console.log(userType);
+      if (userType === 'doctor'){
+        console.log("here");
+        navigate('/doctor-dashboard');
+      }
+      else {
+        navigate('/');
+      }
     }
   };
 

@@ -1,8 +1,8 @@
-require('dotenv').config(); // Ensure .env is loaded correctly
+require('dotenv').config({ path: '../.env' });
 
 const express = require('express');
 const mongoose = require('mongoose');
-const mongoString = process.env.DATABASE_URL; // Get the database URL from .env file
+const mongoString = process.env.DATABASE_URL;
 const app = express();
 app.use(express.json())
 
@@ -70,6 +70,10 @@ database.on('error', (error) => {
 database.once('connected', () => {
   console.log('Database Connected');
 });
+
+app.listen(3000, () => {
+  console.log(`Server Started at ${3000}`)
+})
 
 // Import routes
 const routes_user = require('./routes/routes_user');

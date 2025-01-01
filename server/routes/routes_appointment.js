@@ -42,14 +42,16 @@ router.get('/getUserAppointments', verifyToken, async (req, res) => {
 
 //Post Method
 router.post('/post', async (req, res) => {
+    console.log("id: ", req.body.userId);
     const data = new Model({
         name: req.body.name,
         phoneNumber: req.body.phoneNumber,
         appointmentDate: req.body.appointmentDate,
         preferredTime: req.body.preferredTime,
         doctor: req.body.doctor,
-        userId: User._id, // Ensure the frontend sends userId for this
+        userId: req.body.userId, // Ensure the frontend sends userId for this
     })
+    console.log(data);
     try{
         const dataToSave = await data.save();
         res.status(200).json(dataToSave)

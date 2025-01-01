@@ -17,7 +17,7 @@ function Appointment() {
   const token = localStorage.getItem('authToken');
   const decodedToken = jwtDecode(token);
   const userId = decodedToken.userId;
-  console.log(decodedToken.userId);
+  console.log(userId);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

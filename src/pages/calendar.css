@@ -83,7 +83,7 @@
 }
 
 .close-modal-btn {
-  margin-top: 20px;
+  margin: 20px;
   padding: 10px 20px;
   background-color: #6a9c89;
   color: white;
@@ -95,8 +95,29 @@
 .close-modal-btn:hover {
   background-color: #567c67;
 }
+
+.cancel-appt{
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #6a9c89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-appt:hover {
+  background-color: #567c67;
+}
+
 .appointment-day {
   background-color: #ff6f61; /* Highlight color */
   color: white;
   border-radius: 6px;
+  cursor: pointer;
+}
+
+.appt-btns {
+  display: flex;
+  justify-content: center;
 }

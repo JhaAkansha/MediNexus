@@ -104,7 +104,10 @@ const AppointmentCalendar = () => {
           <p><strong>Time:</strong> {selectedAppointment?.preferredTime}</p>
           <p><strong>Doctor:</strong> {selectedAppointment?.doctor}</p>
         </div>
-        <button onClick={closeModal} className="close-modal-btn">Close</button>
+        <div className='appt-btns'>
+          <button className='cancel-appt'>Cancel Appointment</button>
+          <button onClick={closeModal} className="close-modal-btn">Close</button>
+        </div>
       </Modal>
     </div>
   );

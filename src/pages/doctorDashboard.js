@@ -3,18 +3,22 @@ import "./doctorDashboard.css";
 import { useNavigate } from "react-router-dom";
 
 function DoctorDashboard() {
-  const [appointmentTab, setAppointmentTab] = useState("Today");
-  const [operationTab, setOperationTab] = useState("Today");
   const [editMode, setEditMode] = useState(false);
   const [calendarVisible, setCalendarVisible] = useState(false);
-  
+  const [doctorName, setDoctorName] = useState("Dr. John Doe");
+  const [bio, setBio] = useState(
+    "Experienced Cardiologist specializing in heart health."
+  );
+  const [specialization, setSpecialization] = useState("Cardiology");
+
   const navigate = useNavigate();
 
   // Mock patient data
   const patients = [
-    { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Smith" },
-    { id: 3, name: "Emily Davis" },
+    { id: 1, name: "Akanksha Jha" },
+    { id: 2, name: "Ishita Shete" },
+    { id: 3, name: "Riya Chiraniya" },
+    { id: 4, name: "Gayatri Sadaphal" },
   ];
 
   const handlePatientClick = (id) => {
@@ -27,6 +31,10 @@ function DoctorDashboard() {
 
   const toggleCalendar = () => {
     setCalendarVisible(!calendarVisible);
+  };
+
+  const handleSave = () => {
+    setEditMode(false); // Save changes and close edit mode
   };
 
   return (
@@ -48,13 +56,37 @@ function DoctorDashboard() {
         <div className="edit-section">
           <h4>Edit Information</h4>
           <form>
-            <label htmlFor="leave-reason">Reason for Leave:</label>
-            <input type="text" id="leave-reason" placeholder="Enter reason" />
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              value={doctorName}
+              onChange={(e) => setDoctorName(e.target.value)}
+              placeholder="Enter your name"
+            />
 
-            <label htmlFor="leave-date">Leave Date:</label>
-            <input type="date" id="leave-date" />
+            <label htmlFor="bio">Bio:</label>
+            <textarea
+              id="bio"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              placeholder="Enter your bio"
+            ></textarea>
 
-            <button type="submit" className="save-button">
+            <label htmlFor="specialization">Specialization:</label>
+            <input
+              type="text"
+              id="specialization"
+              value={specialization}
+              onChange={(e) => setSpecialization(e.target.value)}
+              placeholder="Enter specialization"
+            />
+
+            <button
+              type="button"
+              className="save-button"
+              onClick={handleSave}
+            >
               Save
             </button>
           </form>
@@ -69,107 +101,19 @@ function DoctorDashboard() {
         </div>
       )}
 
-      <div className="welcome-section">
-        <h3>Hi Dr. Name!</h3>
-        <p>Welcome back</p>
-        <div className="quick-stats">
-          <div className="stat">
-            <div className="icon">📅</div>
-            <div className="details">
-              <h4>My Appointments</h4>
-              <p>12</p>
-            </div>
-          </div>
-          <div className="stat">
-            <div className="icon">👤</div>
-            <div className="details">
-              <h4>My Patients</h4>
-              <p>23</p>
-            </div>
-          </div>
-          <div className="stat">
-            <div className="icon">🩺</div>
-            <div className="details">
-              <h4>My Operations</h4>
-              <p>02</p>
-            </div>
-          </div>
-          <div className="stat">
-            <div className="icon">📄</div>
-            <div className="details">
-              <h4>My Leaves</h4>
-              <p>03</p>
-            </div>
-          </div>
-        </div>
+      {/* Doctor Information */}
+      <div className="doctor-info">
+        <h3>{doctorName}</h3>
+        <p className="bio">Bio: {bio}</p>
+        <p className="specialization">Specialization: {specialization}</p>
       </div>
 
       <div className="main-content">
         {/* Appointments Section */}
         <div className="appointments-section">
           <h4>Appointments</h4>
-          <div className="tabs">
-            <span
-              className={appointmentTab === "Today" ? "active" : ""}
-              onClick={() => setAppointmentTab("Today")}
-            >
-              Today's
-            </span>
-            <span
-              className={appointmentTab === "Upcoming" ? "active" : ""}
-              onClick={() => setAppointmentTab("Upcoming")}
-            >
-              Upcoming
-            </span>
-            <span
-              className={appointmentTab === "Completed" ? "active" : ""}
-              onClick={() => setAppointmentTab("Completed")}
-            >
-              Completed
-            </span>
-          </div>
           <div className="content-box">
-            {appointmentTab === "Today" && <p>No appointments today.</p>}
-            {appointmentTab === "Upcoming" && (
-              <p>Upcoming appointments will appear here.</p>
-            )}
-            {appointmentTab === "Completed" && (
-              <p>Completed appointments will appear here.</p>
-            )}
-          </div>
-        </div>
-
-        {/* Operations Section */}
-        <div className="operations-section">
-          <h4>Operations</h4>
-          <div className="tabs">
-            <span
-              className={operationTab === "Today" ? "active" : ""}
-              onClick={() => setOperationTab("Today")}
-            >
-              Today's
-            </span>
-            <span
-              className={operationTab === "Upcoming" ? "active" : ""}
-              onClick={() => setOperationTab("Upcoming")}
-            >
-              Upcoming
-            </span>
-            <span
-              className={operationTab === "Completed" ? "active" : ""}
-              onClick={() => setOperationTab("Completed")}
-            >
-              Completed
-            </span>
-          </div>
-          <div className="content-box">
-            {operationTab === "Today" && <p>No operations today.</p>}
-            {operationTab === "Upcoming" && (
-              <p>Upcoming operations will appear here.</p>
-            )}
-            {operationTab === "Completed" && (
-              <p>Completed operations will appear here.</p>
-            )}
+            <p>No appointments today.</p>
           </div>
         </div>
 

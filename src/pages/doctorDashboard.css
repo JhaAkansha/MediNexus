@@ -7,7 +7,7 @@ body {
   }
   
   .dashboard {
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
@@ -24,6 +24,25 @@ body {
     font-size: 1.8rem;
   }
   
+/* Doctor Info Styling */
+.doctor-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.doctor-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.doctor-info .bio,
+.doctor-info .specialization {
+  font-size: 1rem;
+  color: #2a6156;
+  margin: 3px 0;
+}
+
+
   .action-buttons button {
     margin-left: 10px;
     padding: 10px 20px;
@@ -100,7 +119,6 @@ body {
   /* Quick Stats */
   .quick-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-bottom: 20px;
   }
@@ -139,8 +157,7 @@ body {
   
   /* Appointments and Operations Sections */
   .main-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    margin-bottom: 20px;
     gap: 20px;
   }
   
@@ -148,8 +165,9 @@ body {
   .operations-section,
   .patients-section {
     background-color: #1e5a4f;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
+    margin-bottom: 20px;
   }
   
   h4 {

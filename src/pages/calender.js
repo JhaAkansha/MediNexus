@@ -71,6 +71,31 @@ const AppointmentCalendar = () => {
     new Date(appointment.appointmentDate).toLocaleDateString()
   );
 
+  async function cancelAppointment() {
+    const id = selectedAppointment?._id;
+    console.log("appointment id = ", id);
+    try {
+        const response = await fetch(`http://localhost:3000/appt/delete/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+           // Remove the canceled appointment from the appointments array
+           const updatedAppointments = appointments.filter(
+            (appointment) => appointment._id !== id
+        );
+        setAppointments(updatedAppointments); // Update the appointments state
+
+          setIsModalOpen(false);
+          setSelectedAppointment(null);
+        } else {
+            throw new Error('Failed to delete the document');
+        }
+    } catch (error) {
+        console.error('Error deleting document:', error.message);
+    }
+}
+
   return (
     <div className="calendar">
       <div className="calendar-heading">Appointments Calendar</div>
@@ -105,7 +130,7 @@ const AppointmentCalendar = () => {
           <p><strong>Doctor:</strong> {selectedAppointment?.doctor}</p>
         </div>
         <div className='appt-btns'>
-          <button className='cancel-appt'>Cancel Appointment</button>
+          <button className='cancel-appt' onClick={cancelAppointment}>Cancel Appointment</button>
           <button onClick={closeModal} className="close-modal-btn">Close</button>
         </div>
       </Modal>

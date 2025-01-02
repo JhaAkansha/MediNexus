@@ -2,41 +2,53 @@ import './doctorProfile.css'; // Import your CSS file
 import doctor1 from '../doctor1.jpeg';
 import doctor2 from '../doctor2.jpeg';
 import doctor3 from '../doctor3.jpeg';
-//import Appointment from './appointment';
+import React, { useState, useEffect } from 'react';
 
-const doctors = [ // Array of doctor objects
-  {
-    name: "Dr. John Doe",
-    specialization: "Cardiology",
-    about: "Dr. John Doe is a renowned cardiologist with over 15 years of experience. He specializes in...",
-    photo: doctor1, // Replace with actual image path
-  },
-  {
-    name: "Dr. Jane Smith",
-    specialization: "Dermatology",
-    about: "Dr. Jane Smith is a board-certified dermatologist specializing in...",
-    photo: doctor2, // Replace with actual image path
-  },
-  {
-    name: "Dr. Michael Lee",
-    specialization: "Neurology",
-    about: "Dr. Michael Lee is a highly experienced neurologist with expertise in...",
-    photo: doctor3, // Replace with actual image path
-  },
-];
 
 function DoctorProfile() {
+  const [doctors, setDoctors] = useState([]);
+  const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchDoctors = async () => {
+            try {
+                // Make a GET request to your backend to fetch all doctors
+                const response = await fetch('http://localhost:3000/doc/getAll');
+                
+                // Check if response is okay
+                if (!response.ok) {
+                    throw new Error('Failed to fetch doctors');
+                }
+                
+                const data = await response.json(); // Parse the JSON data
+                
+                // Set the doctor data in the state
+                setDoctors(data);
+            } catch (err) {
+                // Handle errors and set error state
+                setError(err.message);
+            }
+        };
+
+        fetchDoctors();
+    }, []);
+
+    if (error) {
+        return <div>Error: {error}</div>; // Display error message if something goes wrong
+    }
+
+
   return (
     <div className="DoctorProfile">
       <h2 className = 'doctor-prof-heading'>Meet Our Doctors</h2>
       <div className="doctor-container">
-        {doctors.map((doctor, index) => (
-          <div key={index} className="doctor-card">
-            <img src={doctor.photo} alt={`${doctor.name}`} className="doctor-photo" />
+        {doctors.map(doctor => (
+          <div key={doctor._id} className="doctor-card">
+            <img src={doctor1} alt={`${doctor.name}`} className="doctor-photo" />
             <div className="doctor-info">
               <h3>{doctor.name}</h3>
               <p className="specialization">{doctor.specialization}</p>
-              <p className="about">{doctor.about}</p>
+              <p className="about">{doctor.description}</p>
               <a href="/appointment" className="appointment-button">Book Appointment</a>
             </div>
           </div>

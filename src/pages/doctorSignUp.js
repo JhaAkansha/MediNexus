@@ -79,6 +79,12 @@ function DoctorSignUp() {
     }
   };
 
+  const handleSignUp = () => {
+    if (userType === 'doctor') {
+      navigate('/doctor-registration');
+    }
+  }
+
   return (
     <CSSTransition in={inProp} timeout={300} classNames="fade" appear>
       <div className='doctor-sign-up'>
@@ -105,7 +111,7 @@ function DoctorSignUp() {
             <input placeholder='Email' className='email' type="email" id="userEmail" name="userEmail" required />
             <input placeholder='Password' className='password' type="password" id="userPassword" name="userPassword" required />
             <input placeholder='Confirm Password' className='set-password' type="password" id="setPassword" name="setPassword" required />
-            <button className="signup" type="submit">Sign Up</button>
+            <button className="signup" type="submit" onClick={handleSignUp}>Sign Up</button>
           </form>
         </div>
       </div>

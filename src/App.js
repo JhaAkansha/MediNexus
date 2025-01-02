@@ -15,6 +15,7 @@ import AddReview from './pages/addReview';
 import PrivateRoute from './PrivateRoute.js';
 import useToken from './useToken.js';
 import DoctorDashboard from './pages/doctorDashboard.js';
+import DoctorRegistration from './pages/doctorRegistration.js';
 
 function App() {
   const {token, setToken, removeToken} = useToken();
@@ -33,6 +34,7 @@ function App() {
           <Route path='/doctorLogin' element={<DoctorLogin setToken={setToken}/>} />
           <Route path = '/doctorSignUp' element = {<DoctorSignUp/>}/>
           <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path = "/doctor-registration" element = {<DoctorRegistration/>}/>
            <Route element={<PrivateRoute token={token} />}>
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/appointment" element={<Appointment />} />

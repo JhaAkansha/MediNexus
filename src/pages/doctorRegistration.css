@@ -1,0 +1,78 @@
+#doctorSignUpForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: #e3e6e0;
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.doctor-info {
+    font-size: 24px;
+    color: #16423c;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.descriptive-text{
+    font-size: 18px;
+    color: #16423c;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+input[type="text"], textarea {
+    width: 85%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 2px solid #16423c;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #16423c;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+input[type="text"]:focus, textarea:focus{
+    outline: none;
+    border-color: #e3e6e0;
+    background-color: #fff;
+}
+
+.submit {
+    background-color: #16423c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit:hover {
+    background-color: #143c32;
+}
+
+@media (max-width: 500px) {
+    .form-container {
+        width: 90%;
+    }
+}

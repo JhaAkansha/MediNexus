@@ -6,16 +6,6 @@ import './doctorLogin.css';
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import {jwtDecode} from 'jwt-decode';
 
-// async function loginUser(credentials) {
-//   return fetch('http://localhost:8080/doctorLogin', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credentials)
-//   })
-//     .then(data => data.json())
-//  }
 export default function DoctorLogin( { setToken } ) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -83,12 +73,6 @@ const responseGoogle = async (response) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    // const token = await loginUser({
-    //   email,
-    //   password
-    // });
-    // setToken(token);
-    // navigate('/');
 
     const userCredentials = {
       email: email,

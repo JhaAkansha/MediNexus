@@ -1,18 +1,3 @@
-// import { Navigate } from 'react-router-dom';
-
-// const PrivateRoute = ({ token, children }) => {
-//   // Check token in state or localStorage
-//   const savedToken = token || localStorage.getItem('authToken');
-
-//   if (!savedToken) {
-//     return <Navigate to="/doctorLogin" />;
-//   }
-
-//   return children;
-// };
-
-// export default PrivateRoute;
-
 import { Navigate, Outlet } from 'react-router-dom';
 
 export default function PrivateRoute({ token }) {

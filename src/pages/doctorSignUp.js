@@ -2,8 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import './doctorSignUp.css';
 import { CSSTransition } from 'react-transition-group';
 import { useState } from 'react';
+import {jwtDecode} from 'jwt-decode';
 
-function DoctorSignUp() {
+function DoctorSignUp({ setToken }) {
   const navigate = useNavigate();
   const [inProp, setInProp] = useState(true);
   const [userType, setUserType] = useState('patient');
@@ -38,14 +39,6 @@ function DoctorSignUp() {
       return;
     }
 
-    // // Example validation
-    // if (email === 'valid@email.com' && password === 'validpassword') {
-    //   alert('Registration successful!');
-    //   navigate('/dashboard'); // Replace with your desired redirect path
-    // } else {
-    //   alert('Invalid email or password.');
-    // }
-
     const formData = {
       name: name,
       email: email,
@@ -67,7 +60,38 @@ function DoctorSignUp() {
 
       if (response.ok) {
         alert('Registration successful!');
-        navigate('/');
+        const loginData = {
+          email: email,
+          password: password,
+        };
+
+        const loginResponse = await fetch('http://localhost:3000/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(loginData),
+        });
+  
+        const loginResult = await loginResponse.json();
+        const token = loginResult.token;
+
+        if (token) {
+              // If token is received, set it in the parent component
+              setToken(token);
+              //store the token in localStorage for persistence
+              localStorage.setItem('authToken', token);
+              const decodedToken = jwtDecode(token);
+                const userType = decodedToken.userType;
+                console.log(userType);
+              if (userType === 'doctor'){
+                console.log("here");
+                navigate('/doctor-registration');
+              }
+              else {
+                navigate('/');
+              }
+            }
       }
       else {
         alert(data.message || 'Registration failed');
@@ -76,10 +100,6 @@ function DoctorSignUp() {
     catch (error) {
       console.error('Error:', error);
       alert('Something went wrong, please try again');
-    }
-
-    if (userType === 'doctor') {
-      navigate('/doctor-registration');
     }
   };
 

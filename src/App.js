@@ -32,7 +32,7 @@ function App() {
           <Route path='/doctorProfile' element={<DoctorProfile />} />
           <Route path='/commonLogin' element={<CommonLogin />} />
           <Route path='/doctorLogin' element={<DoctorLogin setToken={setToken}/>} />
-          <Route path = '/doctorSignUp' element = {<DoctorSignUp/>}/>
+          <Route path = '/doctorSignUp' element = {<DoctorSignUp setToken={setToken}/>}/>
           <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
           <Route path = "/doctor-registration" element = {<DoctorRegistration/>}/>
            <Route element={<PrivateRoute token={token} />}>

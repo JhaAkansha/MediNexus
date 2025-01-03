@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
 const app = express();
+const path = require('path');
 app.use(express.json())
 
 const passport = require('passport');
@@ -87,3 +88,4 @@ app.use('/appt', routes_appointment)        //for apppointment data
 app.use('/auth', routes_auth)               //for login
 app.use('/auth', routes_google)
 app.use('/doc', routes_doctor)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

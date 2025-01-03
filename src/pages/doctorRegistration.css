@@ -76,3 +76,10 @@ input[type="text"]:focus, textarea:focus{
         width: 90%;
     }
 }
+
+.image-upload {
+    border: 2px solid #16423c;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #16423c;
+}

@@ -13,6 +13,10 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    image: {
+        type: String,
+        required: false
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Reference to the User model

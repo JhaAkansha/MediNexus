@@ -4,9 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function DoctorRegistration () {
+    const [selectedImage, setSelectedImage] = useState();
     const [speciality, setSpeciality] = useState('');
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
+
+    const handleFileChange = async (event) => {
+      const file = event.target.files;
+      setSelectedImage(file ? file[0] : null);
+      if (!file) {
+        return;
+      }
+    };
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,22 +36,22 @@ function DoctorRegistration () {
           return;
         }
 
+        const formData = new FormData();
+        formData.append('speciality', speciality);
+        formData.append('description', description);
+        formData.append('image', selectedImage); 
+        formData.append("userId", userId);
     
-        const formData = {
-            speciality: speciality,
-            description: description,
-            userId: userId
-        };
+        console.log("data sent: ",formData);
     
         try {
           //Making POST request to the backend
           const response = await fetch ('http://localhost:3000/doc/post',{
             method: 'POST',
             headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
+              'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(formData),
+            body: formData,
           });
     
           const data = await response.json();
@@ -61,11 +71,12 @@ function DoctorRegistration () {
       };
 
     return (
-        <form id="doctorForm" onSubmit={handleSubmit}>
+        <form id="doctorForm" onSubmit={handleSubmit} encType="multipart/form-data">
             <div className='doctor-info'>Enter your information</div>
             <div className='descriptive-text'>
                 "Please provide your specialty and a brief description about yourself. This information will be displayed on your profile to help patients understand your expertise and choose the doctor that best suits their needs.
             </div>
+            <input type="file" className='image-upload' name = "image" accept="image/*" onChange={handleFileChange}/>
             <input
                 placeholder='Speciality'
                 type='text'

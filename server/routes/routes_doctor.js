@@ -3,6 +3,47 @@ const router = express.Router();
 const Doctor = require('../models/model_doctor');
 const jwt = require('jsonwebtoken');
 const User = require('../models/model_user');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+const uploadsPath = path.join(__dirname, 'uploads')
+
+if (!fs.existsSync(uploadsPath)) {
+    fs.mkdirSync(uploadsPath, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, uploadsPath);
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        if (allowedTypes.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error('Invalid file type'), false);
+        }
+    },
+    limits: { fileSize: 5 * 1024 * 1024 },  // Limit file size to 5MB
+});
+
+router.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        return res.status(400).json({ message: `Multer error: ${err.message}` });
+    } else if (err) {
+        return res.status(500).json({ message: `Server error: ${err.message}` });
+    }
+    next();
+});
+
 
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1]; // Get token from the Authorization header
@@ -13,16 +54,17 @@ const verifyToken = (req, res, next) => {
     }
   
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY); // Verify and decode the token
-      req.userId = decoded.userId; // Attach user ID to the request object
-      next(); // Pass control to the next middleware or route handler
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      req.userId = decoded.userId;
+      next();
     } catch (err) {
-      return res.status(401).json({ message: 'Invalid token' }); // Invalid or expired token
+      return res.status(401).json({ message: 'Invalid token' });
     }
   };
 
 
-router.post('/post', verifyToken, async (req, res) => {
+router.post('/post', verifyToken, upload.single('image'), async (req, res) => {
+    console.log("uploaded file: ",req.file);
     try {
         const { speciality, description, userId } = req.body;
 
@@ -31,11 +73,14 @@ router.post('/post', verifyToken, async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        const imagePath = req.file ? req.file.path : null;
+
         const newDoctor = new Doctor({
             name: user.name ,
             speciality,
             description,
-            userId
+            userId,
+            image: imagePath
         });
 
         const savedDoctor = await newDoctor.save();

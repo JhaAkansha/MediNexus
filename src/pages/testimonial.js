@@ -79,9 +79,9 @@ function Testimonial() {
       <div className="testimonial-container">
         {testimonials.map((testimonial, index) => (
           <div key={index} className="testimonial-card">
-            {/* <img src={renderSvg(testimonial.satisfaction)} alt={`${testimonial.name}`} className="testimonial-photo" /> */}
             {renderSvg(testimonial.satisfaction)}
             <h3 className="testimonial-name">{testimonial.name}</h3>
+            <p className="testimonial-doctor">{testimonial.doctor}</p>
             <p className="testimonial-review">"{testimonial.experience}"</p>
           </div>
         ))}

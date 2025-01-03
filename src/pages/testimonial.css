@@ -29,13 +29,18 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin-bottom: 15px;
   }
   
   .testimonial-name {
-    color: #484848;
+    color: #16423c;
     font-size: 18px;
     font-weight: bold;
+    margin: 10px 0;
+  }
+
+  .testimonial-doctor{
+    color: #16423c;
+    font-size: 18px;
     margin: 10px 0;
   }
   

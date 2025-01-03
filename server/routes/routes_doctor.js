@@ -7,15 +7,10 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const uploadsPath = path.join(__dirname, 'uploads')
-
-if (!fs.existsSync(uploadsPath)) {
-    fs.mkdirSync(uploadsPath, { recursive: true });
-}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, uploadsPath);
+        cb(null, path.join(__dirname, '../uploads'));
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
@@ -73,7 +68,7 @@ router.post('/post', verifyToken, upload.single('image'), async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        const imagePath = req.file ? req.file.path : null;
+        const imagePath = req.file ? path.posix.join('uploads', req.file.filename) : null;
 
         const newDoctor = new Doctor({
             name: user.name ,
@@ -111,28 +106,46 @@ router.get('/get:id', async (req, res) => {
     }
 });
 
-router.patch('/update/:id', async (req, res) => {
+router.patch('/update/:id', upload.single('image'), async (req, res) => {
     try {
         const { speciality, description } = req.body;
-        const updatedDoctor = await Doctor.findByIdAndUpdate(
-            req.params.id,
-            { speciality, description },
-            { new: true }
-        );
-        if (!updatedDoctor) {
+        const doctor = await Doctor.findById(req.params.id);
+        
+        if (!doctor) {
             return res.status(404).json({ message: 'Doctor not found' });
         }
+
+        let imagePath = doctor.image;
+        if (req.file) {
+            imagePath = req.file.path;
+        }
+
+        const updatedDoctor = await Doctor.findByIdAndUpdate(
+            req.params.id,
+            { speciality, description, image: imagePath },
+            { new: true }
+        );
+
         res.status(200).json(updatedDoctor);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
 
+
 router.delete('/delete/:id', async (req, res) => {
     try {
         const doctor = await Doctor.findByIdAndDelete(req.params.id);
         if (!doctor) {
             return res.status(404).json({ message: 'Doctor not found' });
+        }
+        if (doctor.image) {
+            const imagePath = path.join(__dirname, '..', doctor.image);
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error('Failed to delete image:', err);
+                }
+            });
         }
         res.status(200).json({ message: 'Doctor deleted successfully' });
     } catch (error) {

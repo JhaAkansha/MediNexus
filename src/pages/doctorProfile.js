@@ -1,7 +1,4 @@
-import './doctorProfile.css'; // Import your CSS file
-import doctor1 from '../doctor1.jpeg';
-import doctor2 from '../doctor2.jpeg';
-import doctor3 from '../doctor3.jpeg';
+import './doctorProfile.css';
 import React, { useState, useEffect } from 'react';
 
 
@@ -37,14 +34,14 @@ function DoctorProfile() {
         return <div>Error: {error}</div>; // Display error message if something goes wrong
     }
 
-
   return (
     <div className="DoctorProfile">
       <h2 className = 'doctor-prof-heading'>Meet Our Doctors</h2>
       <div className="doctor-container">
         {doctors.map(doctor => (
           <div key={doctor._id} className="doctor-card">
-            <img src={doctor1} alt={`${doctor.name}`} className="doctor-photo" />
+            {console.log(`http://localhost:3000/${doctor.image}`)          }
+            <img src={`http://localhost:3000/${doctor.image}`} alt={`${doctor.name}`} className="doctor-photo" />
             <div className="doctor-info">
               <h3>{doctor.name}</h3>
               <p className="specialization">{doctor.specialization}</p>

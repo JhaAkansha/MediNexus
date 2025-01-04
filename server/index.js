@@ -6,13 +6,14 @@ const mongoString = process.env.DATABASE_URL;
 const app = express();
 const path = require('path');
 app.use(express.json())
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-const doctorRoutes = require('./routes/routes_doctor');
-app.use('/doc', doctorRoutes);
 const cors = require('cors');
 app.use(cors({
   origin: 'http://localhost:5000',  // Allow only this frontend domain
 }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const doctorRoutes = require('./routes/routes_doctor');
+app.use('/doc', doctorRoutes);
+
 
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;

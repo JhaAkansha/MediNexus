@@ -172,7 +172,7 @@ router.get('/details', verifyToken, async (req, res) => {
 // Fetch the patient list for the doctor
 router.get('/patients', verifyToken, async (req, res) => {
     try {
-        const doctorId = req.body.userId;
+        const doctorId = req.userId;;
 
         // Fetch patients associated with the doctor through appointments
         const patients = await Appointment.find({ doctor: doctorId })
@@ -186,30 +186,30 @@ router.get('/patients', verifyToken, async (req, res) => {
     }
 });
 
-// Add a patient to the doctor's list (via appointment creation)
-router.post('/patients', verifyToken, async (req, res) => {
-    try {
-        const doctorId = req.body.userId;
-        const { name, phoneNumber, appointmentDate, preferredTime, userId } = req.body;
+// // Add a patient to the doctor's list (via appointment creation)
+// router.post('/patients', verifyToken, async (req, res) => {
+//     try {
+//         const doctorId = req.body.userId;
+//         const { name, phoneNumber, appointmentDate, preferredTime, userId } = req.body;
 
-        // Create a new appointment entry with patient details
-        const newAppointment = new Appointment({
-            name,
-            phoneNumber,
-            appointmentDate,
-            preferredTime,
-            doctor: doctorId,
-            userId,
-        });
+//         // Create a new appointment entry with patient details
+//         const newAppointment = new Appointment({
+//             name,
+//             phoneNumber,
+//             appointmentDate,
+//             preferredTime,
+//             doctor: doctorId,
+//             userId,
+//         });
 
-        await newAppointment.save();
+//         await newAppointment.save();
 
-        res.status(201).json({ message: 'Patient added successfully via appointment', appointment: newAppointment });
-    } catch (error) {
-        console.error("Error adding patient:", error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
+//         res.status(201).json({ message: 'Patient added successfully via appointment', appointment: newAppointment });
+//     } catch (error) {
+//         console.error("Error adding patient:", error);
+//         res.status(500).json({ message: 'Internal server error' });
+//     }
+// });
 
 // Fetch all appointments for the doctor
 router.get('/appointments', verifyToken, async (req, res) => {

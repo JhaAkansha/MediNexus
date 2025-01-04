@@ -134,7 +134,11 @@ function DoctorDashboard() {
     }
   };
 
-  const closeModal = () => setIsModalOpen(false);
+// Close the modal
+const closeModal = () => {
+  setIsModalOpen(false);
+  setSelectedAppointment(null); // Reset the selected appointment when the modal is closed
+};
 
   return (
     <div className="dashboard">
@@ -253,9 +257,6 @@ function DoctorDashboard() {
                   <p>
                     <strong>Time:</strong> {appt.preferredTime}
                   </p>
-                  <p>
-                    <strong>Doctor:</strong> {appt.doctor}
-                  </p>
                 </div>
               ))
             ) : (
@@ -277,7 +278,6 @@ function DoctorDashboard() {
           <p><strong>Name:</strong> {selectedAppointment?.name}</p>
           <p><strong>Phone:</strong> {selectedAppointment?.phoneNumber}</p>
           <p><strong>Time:</strong> {selectedAppointment?.preferredTime}</p>
-          <p><strong>Doctor:</strong> {selectedAppointment?.doctor}</p>
         </div>
         <button onClick={closeModal} className="close-modal-btn">Close</button>
       </Modal>

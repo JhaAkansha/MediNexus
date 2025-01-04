@@ -40,6 +40,21 @@ router.get('/getUserAppointments', verifyToken, async (req, res) => {
     }
 });
 
+router.get('/getDoctorAppointments', verifyToken, async (req, res) => {
+    try {
+        const userId = req.userId; // Extract user ID from the token
+        const appointments = await Model.find({ doctor: userId });
+
+        if (!appointments.length) {
+            return res.status(404).json({ message: 'No appointments found for this user' });
+        }
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 //Post Method
 router.post('/post', async (req, res) => {
     console.log("id: ", req.body.userId);

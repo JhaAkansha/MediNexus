@@ -10,6 +10,7 @@ const AppointmentCalendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // To control modal visibility
   const [selectedAppointment, setSelectedAppointment] = useState(null); // To store selected appointment details
   const [appointments, setAppointments] = useState([]); // Store appointments fetched from backend
+  const [doctorName, setDoctorName] = useState('');
 
 
   useEffect(() => {
@@ -56,14 +57,35 @@ const AppointmentCalendar = () => {
 
     if (selected) {
       setSelectedAppointment(selected); // Set the selected appointment to display in the modal
+      fetchDoctorName(selected.doctor); 
       setIsModalOpen(true); // Open the modal to show appointment details
     }
   };
+
+  // Function to fetch doctor name based on the doctorId (or userId)
+  const fetchDoctorName = async (doctorId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/doc/get/${doctorId}`, {
+        method: 'GET',
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setDoctorName(data.name); // Assuming the response contains { name: 'Dr. John Doe' }
+      } else {
+        console.error('Error fetching doctor details', data.message);
+      }
+    } catch (error) {
+      console.error('Error fetching doctor name:', error);
+    }
+  };
+
 
   // Close the modal
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedAppointment(null); // Reset the selected appointment when the modal is closed
+    setDoctorName(''); 
   };
 
   // Get all appointment dates for highlighting in the calendar
@@ -88,6 +110,7 @@ const AppointmentCalendar = () => {
 
           setIsModalOpen(false);
           setSelectedAppointment(null);
+          setDoctorName('');
         } else {
             throw new Error('Failed to delete the document');
         }
@@ -127,7 +150,7 @@ const AppointmentCalendar = () => {
           <p><strong>Name:</strong> {selectedAppointment?.name}</p>
           <p><strong>Phone:</strong> {selectedAppointment?.phoneNumber}</p>
           <p><strong>Time:</strong> {selectedAppointment?.preferredTime}</p>
-          <p><strong>Doctor:</strong> {selectedAppointment?.doctor}</p>
+          <p><strong>Doctor:</strong> {doctorName}</p>
         </div>
         <div className='appt-btns'>
           <button className='cancel-appt' onClick={cancelAppointment}>Cancel Appointment</button>

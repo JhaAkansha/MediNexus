@@ -58,6 +58,7 @@ function DoctorDashboard() {
       const token = localStorage.getItem('authToken');
       try {
         const response = await fetch("http://localhost:3000/doc/patients", {
+          method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
           },

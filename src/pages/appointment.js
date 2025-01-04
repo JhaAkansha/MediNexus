@@ -99,7 +99,7 @@ function Appointment() {
           <select name="doctor" value={formData.doctor} onChange={handleChange} required>
             <option value="">Select Doctor</option>
             {doctors.map((doctor) => (
-              <option key={doctor._id} value={doctor.name}>
+              <option key={doctor._id} value={doctor._id}>
                 {doctor.name}
               </option>
             ))}

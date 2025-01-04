@@ -18,10 +18,6 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     doctor: {
-        type: String,
-        required: true
-    },
-    doctorId: {
        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Doctor', 
         required: true

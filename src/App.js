@@ -84,7 +84,7 @@ function App() {
           <Route path="/doctorLogin" element={<><Navbar /><DoctorLogin setToken={setToken} /></>} />
           <Route path="/doctorSignUp" element={<><Navbar /><DoctorSignUp setToken={setToken} /></>} />
           
-          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path="/doctor-dashboard" element={<DoctorDashboard setToken={setToken} removeToken={removeToken}/>} />
           <Route path="/doctor-registration" element={<DoctorRegistration />} />
 
           <Route element={<PrivateRoute token={token} />}>

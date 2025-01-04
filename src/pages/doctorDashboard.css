@@ -4,6 +4,36 @@ body {
     font-family: 'Arial', sans-serif;
     color: #ffffff;
   }
+
+  .doc-log-out {
+      top: 20px;
+      left: 20px;
+      padding: 12px 20px;
+      background-color: #1e5a4f;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .doc-log-out:hover {
+      background-color: #6a9c89;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .doc-log-out:focus {
+      outline: none;
+    }
+    
+    .doc-log-out:active {
+      background-color: #16423c;
+      transform: translateY(1px);  
+  }
   
   .dashboard {
     width: 100vw;

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root"); // Required for react-modal to work
 
-function DoctorDashboard() {
+function DoctorDashboard({ setToken, removeToken }) {
   const [editMode, setEditMode] = useState(false);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [doctorDetails, setDoctorDetails] = useState({
@@ -23,6 +23,11 @@ function DoctorDashboard() {
   const [patients, setPatients] = useState([]); // Dynamic patient list
   const navigate = useNavigate();
 
+  // Handle logout
+  const handleLogout = () => {
+    removeToken();
+    navigate('/doctorLogin'); // Redirect to login page after logout
+  };
 
   useEffect(() => {
     const fetchDoctorDetails = async () => {
@@ -142,6 +147,7 @@ const closeModal = () => {
 
   return (
     <div className="dashboard">
+      <button className="doc-log-out" onClick={handleLogout}>Log Out</button>
       <header className="dashboard-header">
         <h2>Dashboard</h2>
         <div className="action-buttons">

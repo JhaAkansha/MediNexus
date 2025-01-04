@@ -100,7 +100,6 @@ abbr[title] {
   min-height: 50vh;
 }
 
-/* Highlighted Date Styling */
 .react-calendar__tile.highlighted {
   background-color: #6a9c89;
   color: white;

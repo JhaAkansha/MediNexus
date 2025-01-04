@@ -26,9 +26,9 @@ function DoctorDashboard() {
 
   useEffect(() => {
     const fetchDoctorDetails = async () => {
-      const token = localStorage.getItem("authToken"); // Assuming token is stored
+      const token = localStorage.getItem("authToken");
       try {
-        const response = await fetch("http://localhost:3000/doctor/details", {
+        const response = await fetch("http://localhost:3000/doc/details", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,8 +38,9 @@ function DoctorDashboard() {
         if (response.ok) {
           setDoctorDetails({
             name: data.name,
-            specialization: data.specialization,
+            specialization: data.speciality,
           });
+
         } else {
           console.error("Error fetching doctor details:", data.message);
         }
@@ -57,7 +58,7 @@ function DoctorDashboard() {
     const fetchPatients = async () => {
       const token = localStorage.getItem('authToken');
       try {
-        const response = await fetch("http://localhost:3000/doctor/patients", {
+        const response = await fetch("http://localhost:3000/doc/patients", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -168,11 +169,11 @@ function DoctorDashboard() {
             <input
               type="text"
               id="specialization"
-              value={doctorDetails.specialization}
+              value={doctorDetails.speciality}
               onChange={(e) =>
                 setDoctorDetails({
                   ...doctorDetails,
-                  specialization: e.target.value,
+                  speciality: e.target.value,
                 })
               }
               placeholder="Enter specialization"
@@ -213,7 +214,7 @@ function DoctorDashboard() {
       <div className="doctor-info">
         <h3>{doctorDetails.name || "Loading..."}</h3>
         <p className="specialization">
-          Specialization: {doctorDetails.specialization || "Loading..."}
+          Specialization: {doctorDetails.speciality || "Loading..."}
         </p>
       </div>
 

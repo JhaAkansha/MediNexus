@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Doctor = require('../models/model_doctor');
+const Appointment = require('../models/model_appointment');
 const jwt = require('jsonwebtoken');
 const User = require('../models/model_user');
 const multer = require('multer');
@@ -94,7 +95,7 @@ router.get('/getAll', async(req, res) => {
     }
 });
 
-router.get('/get/:id', async (req, res) => {
+router.get('/get:id', async (req, res) => {
     try {
         const doctor = await Doctor.findById(req.params.id);
         if (!doctor) {
@@ -157,10 +158,9 @@ router.delete('/delete/:id', async (req, res) => {
 router.get('/details', verifyToken, async (req, res) => {
     try {
         const doctorId = req.userId; 
-        const doctor = await Doctor.findById(doctorId).select('name specialization');
-
+        const doctor = await Doctor.find({ userId: doctorId }).select('name speciality -_id');
         if (!doctor) {
-            return res.status(404).json({ message: 'Doctor not found' });
+            return res.status(405).json({ message: 'Doctor not found' });
         }
 
         res.status(200).json(doctor);
@@ -174,7 +174,7 @@ router.get('/details', verifyToken, async (req, res) => {
 router.get('/patients', verifyToken, async (req, res) => {
     try {
         const doctorId = req.user;
-        const patients = await patients.find({ doctor: doctorId }).select('name _id');
+        const patients = await Appointment.find({ doctor: doctorId }).select('name');
 
         res.status(200).json(patients);
     } catch (error) {
@@ -183,27 +183,27 @@ router.get('/patients', verifyToken, async (req, res) => {
     }
 });
 
-// Add a patient to the doctor's list
-router.post('/patients', verifyToken, async (req, res) => {
-    try {
-        const doctorId = req.userId;
-        const { name, phoneNumber, email } = req.body;
+// // Add a patient to the doctor's list
+// router.post('/patients', verifyToken, async (req, res) => {
+//     try {
+//         const doctorId = req.userId;
+//         const { name, phoneNumber, email } = req.body;
 
-        const newPatient = new Patient({
-            name,
-            phoneNumber,
-            email,
-            doctor: doctorId,
-        });
+//         const newPatient = new Patient({
+//             name,
+//             phoneNumber,
+//             email,
+//             doctor: doctorId,
+//         });
 
-        await newPatient.save();
+//         await newPatient.save();
 
-        res.status(201).json({ message: 'Patient added successfully', patient: newPatient });
-    } catch (error) {
-        console.error("Error adding patient:", error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
+//         res.status(201).json({ message: 'Patient added successfully', patient: newPatient });
+//     } catch (error) {
+//         console.error("Error adding patient:", error);
+//         res.status(500).json({ message: 'Internal server error' });
+//     }
+// });
 
 // Fetch all appointments for the doctor
 router.get('/appointments', verifyToken, async (req, res) => {

@@ -18,13 +18,17 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     doctor: {
+        type: String,
+        required: true
+    },
+    doctorId: {
        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Doctor', 
         required: true
     },
-    userId: { // Adding userId to associate the appointment with a user
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Reference to the User model
+        ref: 'User',
         required: true
     }
 });

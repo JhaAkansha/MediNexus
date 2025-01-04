@@ -94,7 +94,7 @@ router.get('/getAll', async(req, res) => {
     }
 });
 
-router.get('/get:id', async (req, res) => {
+router.get('/get/:id', async (req, res) => {
     try {
         const doctor = await Doctor.findById(req.params.id);
         if (!doctor) {
@@ -150,6 +150,73 @@ router.delete('/delete/:id', async (req, res) => {
         res.status(200).json({ message: 'Doctor deleted successfully' });
     } catch (error) {
         res.status(400).json({ message: error.message });
+    }
+});
+
+//get doctor details
+router.get('/details', verifyToken, async (req, res) => {
+    try {
+        const doctorId = req.userId; 
+        const doctor = await Doctor.findById(doctorId).select('name specialization');
+
+        if (!doctor) {
+            return res.status(404).json({ message: 'Doctor not found' });
+        }
+
+        res.status(200).json(doctor);
+    } catch (error) {
+        console.error("Error fetching doctor details:", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Fetch the patient list for the doctor
+router.get('/patients', verifyToken, async (req, res) => {
+    try {
+        const doctorId = req.user;
+        const patients = await patients.find({ doctor: doctorId }).select('name _id');
+
+        res.status(200).json(patients);
+    } catch (error) {
+        console.error("Error fetching patients:", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Add a patient to the doctor's list
+router.post('/patients', verifyToken, async (req, res) => {
+    try {
+        const doctorId = req.userId;
+        const { name, phoneNumber, email } = req.body;
+
+        const newPatient = new Patient({
+            name,
+            phoneNumber,
+            email,
+            doctor: doctorId,
+        });
+
+        await newPatient.save();
+
+        res.status(201).json({ message: 'Patient added successfully', patient: newPatient });
+    } catch (error) {
+        console.error("Error adding patient:", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Fetch all appointments for the doctor
+router.get('/appointments', verifyToken, async (req, res) => {
+    try {
+        const doctorId = req.userId;
+        const appointments = await Appointment.find({ doctor: doctorId }).select(
+            'name phoneNumber preferredTime appointmentDate'
+        );
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        console.error("Error fetching appointments:", error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 

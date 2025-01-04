@@ -18,8 +18,9 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     doctor: {
-        required: true,
-        type: String
+       type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Doctor', 
+        required: true
     },
     userId: { // Adding userId to associate the appointment with a user
         type: mongoose.Schema.Types.ObjectId,

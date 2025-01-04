@@ -8,7 +8,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(__dirname, '../uploads'));
@@ -154,7 +153,7 @@ router.delete('/delete/:id', async (req, res) => {
     }
 });
 
-//get doctor details
+// Get doctor details
 router.get('/details', verifyToken, async (req, res) => {
     try {
         const doctorId = req.userId; 
@@ -173,8 +172,12 @@ router.get('/details', verifyToken, async (req, res) => {
 // Fetch the patient list for the doctor
 router.get('/patients', verifyToken, async (req, res) => {
     try {
-        const doctorId = req.user;
-        const patients = await Appointment.find({ doctor: doctorId }).select('name');
+        const doctorId = req.body.userId;
+
+        // Fetch patients associated with the doctor through appointments
+        const patients = await Appointment.find({ doctor: doctorId })
+            .select('name phoneNumber email') // Assuming you have email in the appointment schema
+            .exec();
 
         res.status(200).json(patients);
     } catch (error) {
@@ -183,35 +186,39 @@ router.get('/patients', verifyToken, async (req, res) => {
     }
 });
 
-// // Add a patient to the doctor's list
-// router.post('/patients', verifyToken, async (req, res) => {
-//     try {
-//         const doctorId = req.userId;
-//         const { name, phoneNumber, email } = req.body;
+// Add a patient to the doctor's list (via appointment creation)
+router.post('/patients', verifyToken, async (req, res) => {
+    try {
+        const doctorId = req.body.userId;
+        const { name, phoneNumber, appointmentDate, preferredTime, userId } = req.body;
 
-//         const newPatient = new Patient({
-//             name,
-//             phoneNumber,
-//             email,
-//             doctor: doctorId,
-//         });
+        // Create a new appointment entry with patient details
+        const newAppointment = new Appointment({
+            name,
+            phoneNumber,
+            appointmentDate,
+            preferredTime,
+            doctor: doctorId,
+            userId,
+        });
 
-//         await newPatient.save();
+        await newAppointment.save();
 
-//         res.status(201).json({ message: 'Patient added successfully', patient: newPatient });
-//     } catch (error) {
-//         console.error("Error adding patient:", error);
-//         res.status(500).json({ message: 'Internal server error' });
-//     }
-// });
+        res.status(201).json({ message: 'Patient added successfully via appointment', appointment: newAppointment });
+    } catch (error) {
+        console.error("Error adding patient:", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 // Fetch all appointments for the doctor
 router.get('/appointments', verifyToken, async (req, res) => {
     try {
-        const doctorId = req.userId;
-        const appointments = await Appointment.find({ doctor: doctorId }).select(
-            'name phoneNumber preferredTime appointmentDate'
-        );
+        const doctorId = req.body.userId;
+
+        // Fetch appointments linked to the doctor
+        const appointments = await Appointment.find({ doctor: doctorId })
+            .select('name phoneNumber appointmentDate preferredTime');
 
         res.status(200).json(appointments);
     } catch (error) {

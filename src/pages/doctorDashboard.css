@@ -105,6 +105,15 @@ body {
   }
   
   /* Calendar Section */
+  .react-calendar__navigation button {
+    color: black;
+    min-width: 44px;
+    background: none;
+      background-color: rgba(0, 0, 0, 0);
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  
   .calendar-section {
     background-color: #1e5a4f;
     padding: 20px;

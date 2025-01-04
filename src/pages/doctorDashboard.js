@@ -12,7 +12,7 @@ function DoctorDashboard() {
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [doctorDetails, setDoctorDetails] = useState({
     name: "",
-    specialization: "",
+    speciality: "",
   });
  
   const [appointments, setAppointments] = useState([]);
@@ -37,10 +37,9 @@ function DoctorDashboard() {
 
         if (response.ok) {
           setDoctorDetails({
-            name: data.name,
-            specialization: data.speciality,
+            name: data[0].name,
+            speciality: data[0].speciality,
           });
-
         } else {
           console.error("Error fetching doctor details:", data.message);
         }

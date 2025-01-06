@@ -67,6 +67,7 @@ import PrivateRoute from './PrivateRoute.js';
 import useToken from './useToken.js';
 import DoctorDashboard from './pages/doctorDashboard.js';
 import DoctorRegistration from './pages/doctorRegistration.js';
+import MedicalRecords from './pages/medicalRecords.js';
 
 function App() {
   const { token, setToken, removeToken } = useToken();
@@ -89,6 +90,7 @@ function App() {
 
           <Route element={<PrivateRoute token={token} />}>
             <Route path="/calendar" element={<><Navbar /><Calendar /></>} />
+            <Route path="/medicalREcords" element={<><Navbar /><MedicalRecords /></>} />
             <Route path="/appointment" element={<><Navbar /><Appointment /></>} />
             <Route path="/addReview" element={<><Navbar /><AddReview /></>} />
           </Route>

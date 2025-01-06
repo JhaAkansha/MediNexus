@@ -1,0 +1,81 @@
+.medical-records{
+    width: 10vw;
+    min-height: 90vh;
+    background-color: #e3e6e0;
+    color: #16423c;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.record-upload{
+    border: 2px solid #16423c;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #16423c;
+    width: 30vw;
+  margin: 20px;
+}
+
+/* Example styling for the file list */
+.file-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.file-square {
+    width: 200px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.file-link {
+    text-decoration: none;
+    color: #16423c;
+    font-size: 16px;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.upload {
+    top: 20px;
+    left: 20px;
+    padding: 12px 20px;
+    background-color: #1e5a4f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .upload:hover {
+    background-color: #6a9c89;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .upload:focus {
+    outline: none;
+  }
+  
+  .upload:active {
+    background-color: #16423c;
+    transform: translateY(1px);  
+}
+
+.medical-records{
+    width: 100vw;
+}

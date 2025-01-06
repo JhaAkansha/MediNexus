@@ -18,7 +18,7 @@ const Services = () => {
         {
             title: "Medical History and Records",
             icon: "🧬", // Use appropriate icon
-            link: "/records", // Define your route
+            link: "/medicalRecords", // Define your route
         },
     ];
 

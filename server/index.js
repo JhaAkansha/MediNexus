@@ -91,6 +91,7 @@ const routes_auth = require('./routes/routes_auth');
 const routes_google = require('./routes/routes_google');
 const routes_doctor = require('./routes/routes_doctor');
 const routes_review = require('./routes/routes_review');
+const routes_records = require('./routes/routes_records');
 
 app.use('/api', routes_user)                 //for user name and password
 app.use('/appt', routes_appointment)         //for apppointment data
@@ -98,3 +99,4 @@ app.use('/auth', routes_auth)                //for login
 app.use('/auth', routes_google)              //for login using google
 app.use('/doc', routes_doctor)                //for doctor registration
 app.use('/review', routes_review)             //for reviews
+app.use('/records', routes_records)

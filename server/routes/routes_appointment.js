@@ -57,24 +57,38 @@ router.get('/getDoctorAppointments', verifyToken, async (req, res) => {
 
 //Post Method
 router.post('/post', async (req, res) => {
-    console.log("id: ", req.body.userId);
-    const data = new Model({
-        name: req.body.name,
-        phoneNumber: req.body.phoneNumber,
-        appointmentDate: req.body.appointmentDate,
-        preferredTime: req.body.preferredTime,
-        doctor: req.body.doctor,
-        userId: req.body.userId, // Ensure the frontend sends userId for this
-    })
-    console.log(data);
-    try{
-        const dataToSave = await data.save();
-        res.status(200).json(dataToSave)
+    const { name, phoneNumber, appointmentDate, preferredTime, doctor, userId } = req.body;
+
+    try {
+        // Check if the time slot is already booked for the doctor
+        const existingAppointment = await Model.findOne({
+            doctor,
+            appointmentDate: new Date(appointmentDate),
+            preferredTime,
+        });
+
+        if (existingAppointment) {
+            return res.status(400).json({ message: 'This time slot is unavailable. Please select another slot.' });
+        }
+
+        // Create a new appointment
+        const newAppointment = new Model({
+            name,
+            phoneNumber,
+            appointmentDate: new Date(appointmentDate),
+            preferredTime,
+            doctor,
+            userId,
+        });
+
+        const savedAppointment = await newAppointment.save();
+        res.status(200).json({ message: 'Appointment booked successfully!', appointment: savedAppointment });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while booking the appointment.', error });
     }
-    catch(error){
-        res.status(400).json({message:error.message})
-    }
-})
+});
+
 
 //Get all Method
 router.get('/getAll', async (req, res) => {

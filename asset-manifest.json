@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/MediNexus/static/css/main.a96f2683.css",
+    "main.js": "/MediNexus/static/js/main.d0b4c8ad.js",
+    "static/js/453.6e1ac51d.chunk.js": "/MediNexus/static/js/453.6e1ac51d.chunk.js",
+    "static/media/homepage3.jpg": "/MediNexus/static/media/homepage3.66b8304c4d90828cc8d4.jpg",
+    "static/media/profile-add.svg": "/MediNexus/static/media/profile-add.b391e00861abd7058eb8b273b80929dd.svg",
+    "index.html": "/MediNexus/index.html",
+    "main.a96f2683.css.map": "/MediNexus/static/css/main.a96f2683.css.map",
+    "main.d0b4c8ad.js.map": "/MediNexus/static/js/main.d0b4c8ad.js.map",
+    "453.6e1ac51d.chunk.js.map": "/MediNexus/static/js/453.6e1ac51d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a96f2683.css",
+    "static/js/main.d0b4c8ad.js"
+  ]
+}

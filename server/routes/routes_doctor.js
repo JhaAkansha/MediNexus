@@ -176,7 +176,7 @@ router.get('/patients', verifyToken, async (req, res) => {
 
         // Fetch patients associated with the doctor through appointments
         const patients = await Appointment.find({ doctor: doctorId })
-            .select('name phoneNumber email') // Assuming you have email in the appointment schema
+            .select('name phoneNumber userId') // Assuming you have email in the appointment schema
             .exec();
 
         res.status(200).json(patients);

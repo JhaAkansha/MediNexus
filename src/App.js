@@ -68,6 +68,7 @@ import useToken from './useToken.js';
 import DoctorDashboard from './pages/doctorDashboard.js';
 import DoctorRegistration from './pages/doctorRegistration.js';
 import MedicalRecords from './pages/medicalRecords.js';
+import PatientHistory from './pages/patientHistory.js';
 
 function App() {
   const { token, setToken, removeToken } = useToken();
@@ -87,6 +88,7 @@ function App() {
           
           <Route path="/doctor-dashboard" element={<DoctorDashboard setToken={setToken} removeToken={removeToken}/>} />
           <Route path="/doctor-registration" element={<DoctorRegistration />} />
+          <Route path="/patient-history/:id" element={<PatientHistory />} />
 
           <Route element={<PrivateRoute token={token} />}>
             <Route path="/calendar" element={<><Navbar /><Calendar /></>} />

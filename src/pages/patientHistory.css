@@ -1,0 +1,77 @@
+.patient-history {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh; /* Ensure it occupies full height of the screen */
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .patient-history-title {
+    font-size: 2rem;
+    color: #16423c;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .patient-history > div {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .record-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .record-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .record-item a {
+    text-decoration: none;
+    color: #16423c;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  
+  .record-item a:hover {
+    color: #16423c;
+  }
+  
+  .alt-text {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 30px;
+  }
+  
+  /* Responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    .patient-history-title {
+      font-size: 1.5rem;
+    }
+  
+    .record-item {
+      padding: 15px;
+      font-size: 0.9rem;
+    }
+  
+    .alt-text {
+      font-size: 1rem;
+    }
+  }

@@ -237,7 +237,7 @@ const closeModal = () => {
               <div
                 key={patient._id}
                 className="patient-box"
-                onClick={() => handlePatientClick(patient._id)}
+                onClick={() => handlePatientClick(patient.userId)}
               >
                 {patient.name}
               </div>

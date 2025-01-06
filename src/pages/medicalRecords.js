@@ -87,15 +87,15 @@ function MedicalRecords() {
                         <div key={record._id} className="file-square">
                             {record.fileUrl ? (
                                 <a
-                                    href={record.fileUrl} // The URL to the uploaded PDF
+                                    href={record.fileUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="file-link"
                                 >
-                                    {record.file.split('/').pop()} {/* Display file name */}
+                                    {record.file.split('/').pop()}
                                 </a>
                             ) : (
-                                <p>No file available</p> // Fallback if fileUrl is null
+                                <p>No file available</p>
                             )}
                         </div>
                     ))

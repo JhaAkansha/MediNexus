@@ -8,7 +8,7 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../records'));
+        cb(null, path.join(__dirname, '../uploads'));
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
@@ -68,7 +68,7 @@ router.post('/post', verifyToken, upload.single('file'), async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        const filePath = req.file ? path.posix.join('records', req.file.filename) : null;
+        const filePath = req.file ? path.posix.join('uploads', req.file.filename) : null;
 
         const newRecord = new Records({
             userId,
@@ -76,8 +76,7 @@ router.post('/post', verifyToken, upload.single('file'), async (req, res) => {
         });
 
         const savedRecord = await newRecord.save();
-        const fileUrl = `http://localhost:3000/records/${req.file.filename}`;
-        res.status(201).json({ savedRecord, fileUrl });
+        res.status(201).json(savedRecord);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -95,7 +94,7 @@ router.get('/getAll', async (req, res) => {
             if (record.file) {
                 return {
                     ...record.toObject(),
-                    fileUrl: `http://localhost:3000/records/${record.file}`
+                    fileUrl: `http://localhost:3000/${record.file}`
                 };
             } else {
                 return {
@@ -103,6 +102,30 @@ router.get('/getAll', async (req, res) => {
                     fileUrl: null // If file is null, return null for fileUrl
                 };
             }
+        });
+
+        res.status(200).json(recordsWithUrls);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching records' });
+    }
+});
+
+router.get('/get/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        const patientRecords = await Records.find({ userId: id });
+        
+        if (patientRecords.length === 0) {
+            return res.status(404).json({ message: 'No records found for this patient' });
+        }
+
+        const recordsWithUrls = patientRecords.map(record => {
+            return {
+                ...record.toObject(),
+                fileUrl: `http://localhost:3000/${record.file}`
+            };
         });
 
         res.status(200).json(recordsWithUrls);

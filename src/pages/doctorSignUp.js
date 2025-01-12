@@ -240,7 +240,8 @@ function DoctorSignUp({ setToken }) {
       if (user.emailVerified) {
         console.log('Email is verified');
         setIsVerifying(false); // Stop polling
-        addUserToBackend(name, email, password, userType); // Proceed to backend call
+        const userData = { name, email, password, userType }
+        addUserToBackend(userData); // Proceed to backend call
       } else if (attempts < maxAttempts) {
         attempts++;
         console.log(`Email not verified, checking again... (${attempts})`);
@@ -265,8 +266,9 @@ function DoctorSignUp({ setToken }) {
 
         if (currentUser.emailVerified) {
           unsubscribe();
-
-          await addUserToBackend({ name, email, password, userType });
+          
+          const userData = { name, email, password, userType }
+          await addUserToBackend(userData);
         } else {
           alert('Please verify your email to proceed.');
         }
@@ -277,6 +279,7 @@ function DoctorSignUp({ setToken }) {
   // Function to add user data to the backend
   const addUserToBackend = async (userData) => {
     console.log("addUserToBackend")
+    console.log(userData);
     try {
       // Making POST request to the backend
       const response = await fetch('http://localhost:3000/api/post', {

@@ -9,9 +9,7 @@ function DoctorSignUp({ setToken }) {
   const navigate = useNavigate();
   const [inProp, setInProp] = useState(true);
   const [userType, setUserType] = useState('patient');
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isVerifying, setIsVerifying] = useState(false);
 
   const handleSignInClick = () => {
     setInProp(false);
@@ -55,7 +53,6 @@ function DoctorSignUp({ setToken }) {
       // Inform the user about the email verification
       setIsLoading(false);
       alert('A verification email has been sent. Please check your inbox to proceed.');
-      setError('A verification email has been sent. Please check your inbox to proceed.');
       pollForEmailVerification(user, name, email, password, userType);
 
       // Proceed after email is verified
@@ -63,12 +60,10 @@ function DoctorSignUp({ setToken }) {
     } catch (error) {
       console.error('Error during registration:', error);
       setIsLoading(false);
-      setError(error.message); // Display error message
     }
   };
 
   const pollForEmailVerification = async (user, name, email, password, userType) => {
-    setIsVerifying(true);
     let attempts = 0;
     const maxAttempts = 10; // Limit the number of attempts to check email verification status
 
@@ -76,7 +71,6 @@ function DoctorSignUp({ setToken }) {
       await user.reload(); // Reload user object to get the updated emailVerified status
       if (user.emailVerified) {
         console.log('Email is verified');
-        setIsVerifying(false); // Stop polling
         const userData = { name, email, password, userType }
         addUserToBackend(userData); // Proceed to backend call
       } else if (attempts < maxAttempts) {
@@ -84,7 +78,6 @@ function DoctorSignUp({ setToken }) {
         console.log(`Email not verified, checking again... (${attempts})`);
         setTimeout(checkVerificationStatus, 3000); // Retry every 3 seconds
       } else {
-        setIsVerifying(false);
         alert('Verification timed out, please try again later.');
       }
     };

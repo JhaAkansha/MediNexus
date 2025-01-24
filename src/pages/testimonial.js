@@ -1,9 +1,6 @@
 import './testimonial.css'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-//import patient1 from '../patient1.jpg';
-// import patient2 from '../patient2.jpg';
-// import patient3 from '../patient3.jpg';
 
 
 function Testimonial() {

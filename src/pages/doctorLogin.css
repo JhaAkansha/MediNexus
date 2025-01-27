@@ -2,7 +2,7 @@
     height: 90vh;
     width: 100vw;
     font-family: Arial, sans-serif;
-    background-color: #fff; /* Dark green background */
+    background-color: #fff;
     display: flex;
   }
   
@@ -12,8 +12,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #fff; /* White background for the login form */
-    border-radius: 10px; /* Rounded corners for a modern look */
+    background-color: #fff;
+    border-radius: 10px;
   }
   
   h2 {
@@ -96,7 +96,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #16423c; /* White background for the login form */
+    background-color: #16423c;
     color: #e3e6e0;
     border-top-left-radius: 80px;
     border-bottom-left-radius: 80px;

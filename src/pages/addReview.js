@@ -44,7 +44,6 @@ function AddReview() {
     }
 
     try {
-      //Making POST request to the backend
       const response = await fetch ('http://localhost:3000/review/post',{
         method: 'POST',
         headers: {

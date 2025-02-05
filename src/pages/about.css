@@ -1,8 +1,8 @@
 .about-page {
-    background-color: #e3e6e0; /* Background color */
-    height: calc(100vh - 75px);; /* Full height */
-    display: flex; /* Use Flexbox */
-    align-items: flex-start; /* Align items at the start */
+    background-color: #e3e6e0;
+    height: calc(100vh - 75px);
+    display: flex;
+    align-items: flex-start;
 }
 
 .about-content {
@@ -20,22 +20,22 @@
 }
 
 .info {
-    flex: 2; /* Take 2 parts of the space for information */
-    display: flex; /* Use Flexbox */
+    flex: 2;
+    display: flex;
     text-align: center;
 }
 
 .about-heading {
-    color: #16423c; /* Adjust the color as needed */
-    font-size: 36px; /* Increased font size */
-    font-weight: bold; /* Make the font bold */
+    color: #16423c;
+    font-size: 36px;
+    font-weight: bold;
     text-align: center;
 }
 
 
 .info div {
-    color: #16423c; /* Same color as the heading for the info text */
-    font-size: 20px; /* Increased font size */
-    line-height: 1.5; /* Improve readability */
-    margin: 15%; /* Add space above the info text */
+    color: #16423c;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 15%;
 }

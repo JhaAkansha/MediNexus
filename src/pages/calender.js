@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import Modal from 'react-modal'; // For displaying appointment details
-import './calendar.css'; // Your custom styles
+import Modal from 'react-modal';
+import './calendar.css';
 
-Modal.setAppElement('#root'); // Required for react-modal to work
+Modal.setAppElement('#root');
 
 const AppointmentCalendar = () => {
   const [date, setDate] = useState(new Date());
-  const [isModalOpen, setIsModalOpen] = useState(false); // To control modal visibility
-  const [selectedAppointment, setSelectedAppointment] = useState(null); // To store selected appointment details
-  const [appointments, setAppointments] = useState([]); // Store appointments fetched from backend
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [appointments, setAppointments] = useState([]);
   const [doctorName, setDoctorName] = useState('');
 
 
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const token = localStorage.getItem('authToken'); // Get the token from localStorage
+        const token = localStorage.getItem('authToken');
         console.log("sent token: ", token);
         if (!token) {
           console.error('No token found, please log in');
-          return; // Exit if there's no token
+          return;
         }
   
         const response = await fetch('http://localhost:3000/appt/getUserAppointments', {
-          method: 'GET', // Method for fetching appointments
+          method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`, // Include token in the Authorization header
+            'Authorization': `Bearer ${token}`,
           },
         });
   
         const data = await response.json();
   
         if (response.ok) {
-          setAppointments(data); // Set appointments to state
+          setAppointments(data);
         } else {
           console.error('Error fetching appointments', data.message);
         }
@@ -42,27 +42,24 @@ const AppointmentCalendar = () => {
       }
     };
   
-    fetchAppointment(); // Call the fetch function
+    fetchAppointment();
   }, []);
   
 
-  // Function to handle date selection in the calendar
   const onDateChange = (newDate) => {
     setDate(newDate);
 
-    // Find the selected appointment for the chosen date
     const selected = appointments.find(
       (appointment) => new Date(appointment.appointmentDate).toLocaleDateString() === newDate.toLocaleDateString()
     );
 
     if (selected) {
-      setSelectedAppointment(selected); // Set the selected appointment to display in the modal
+      setSelectedAppointment(selected);
       fetchDoctorName(selected.doctor); 
-      setIsModalOpen(true); // Open the modal to show appointment details
+      setIsModalOpen(true);
     }
   };
 
-  // Function to fetch doctor name based on the doctorId (or userId)
   const fetchDoctorName = async (doctorId) => {
     try {
       const response = await fetch(`http://localhost:3000/doc/get/${doctorId}`, {
@@ -71,7 +68,7 @@ const AppointmentCalendar = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setDoctorName(data.name); // Assuming the response contains { name: 'Dr. John Doe' }
+        setDoctorName(data.name);
       } else {
         console.error('Error fetching doctor details', data.message);
       }
@@ -81,14 +78,12 @@ const AppointmentCalendar = () => {
   };
 
 
-  // Close the modal
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedAppointment(null); // Reset the selected appointment when the modal is closed
+    setSelectedAppointment(null);
     setDoctorName(''); 
   };
 
-  // Get all appointment dates for highlighting in the calendar
   const appointmentDates = appointments.map((appointment) =>
     new Date(appointment.appointmentDate).toLocaleDateString()
   );
@@ -102,11 +97,10 @@ const AppointmentCalendar = () => {
         });
 
         if (response.ok) {
-           // Remove the canceled appointment from the appointments array
            const updatedAppointments = appointments.filter(
             (appointment) => appointment._id !== id
         );
-        setAppointments(updatedAppointments); // Update the appointments state
+        setAppointments(updatedAppointments);
 
           setIsModalOpen(false);
           setSelectedAppointment(null);
@@ -127,17 +121,15 @@ const AppointmentCalendar = () => {
           onChange={onDateChange}
           value={date}
           tileClassName={({ date }) => {
-            // Highlight dates with appointments
             const dateString = date.toLocaleDateString();
             if (appointmentDates.includes(dateString)) {
-              return 'appointment-day'; // Add custom CSS class for highlighted days
+              return 'appointment-day';
             }
             return null;
           }}
         />
       </div>
 
-      {/* Modal Popup to display appointment details */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}

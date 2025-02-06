@@ -1,5 +1,6 @@
 # MediNexus
 This is an application to allow smooth communication between doctors and patients.
+There is a different dashboard for patints as well as doctors.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

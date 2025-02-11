@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import Modal from "react-modal"; // For displaying appointment details
+import Modal from "react-modal";
 import "./doctorDashboard.css";
-import "./calendar.css"; // Custom styles for the calendar
+import "./calendar.css";
 import { useNavigate } from "react-router-dom";
 
-Modal.setAppElement("#root"); // Required for react-modal to work
-
+Modal.setAppElement("#root");
 function DoctorDashboard({ setToken, removeToken }) {
   const [editMode, setEditMode] = useState(false);
   const [calendarVisible, setCalendarVisible] = useState(false);
@@ -20,13 +19,13 @@ function DoctorDashboard({ setToken, removeToken }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
-  const [patients, setPatients] = useState([]); // Dynamic patient list
+  const [patients, setPatients] = useState([]);
   const navigate = useNavigate();
 
   // Handle logout
   const handleLogout = () => {
     removeToken();
-    navigate('/doctorLogin'); // Redirect to login page after logout
+    navigate('/doctorLogin');
   };
 
   useEffect(() => {
@@ -57,7 +56,6 @@ function DoctorDashboard({ setToken, removeToken }) {
   }, []);
 
 
-// Fetch patients dynamically
   useEffect(() => {
     const fetchPatients = async () => {
       const token = localStorage.getItem('authToken');
@@ -71,7 +69,7 @@ function DoctorDashboard({ setToken, removeToken }) {
         const data = await response.json();
 
         if (response.ok) {
-          setPatients(data); // Populate patient list
+          setPatients(data);
         } else {
           console.error("Error fetching patients:", data.message);
         }
@@ -81,15 +79,13 @@ function DoctorDashboard({ setToken, removeToken }) {
     };
 
     fetchPatients();
-  }, []); // Runs only once when the component is mounted
-
+  }, []);
 
   const handlePatientClick = (id) => {
-    navigate(`/patient-history/${id}`); // Redirect to patient's history page
+    navigate(`/patient-history/${id}`);
   };
 
   useEffect(() => {
-    // Fetch appointments for the logged-in doctor
     const fetchAppointments = async () => {
       const token = localStorage.getItem("authToken");
       try {
@@ -101,8 +97,8 @@ function DoctorDashboard({ setToken, removeToken }) {
         });
         const data = await response.json();
         if (response.ok) {
-          setAppointments(data); // Set all appointments
-          filterTodayAppointments(data); // Filter today's appointments
+          setAppointments(data);
+          filterTodayAppointments(data);
         } else {
           console.error("Error fetching appointments:", data.message);
         }
@@ -139,10 +135,9 @@ function DoctorDashboard({ setToken, removeToken }) {
     }
   };
 
-// Close the modal
 const closeModal = () => {
   setIsModalOpen(false);
-  setSelectedAppointment(null); // Reset the selected appointment when the modal is closed
+  setSelectedAppointment(null);
 };
 
   return (
@@ -220,7 +215,6 @@ const closeModal = () => {
 
 
 
-      {/* Doctor Information */}
       <div className="doctor-info">
         <h3>{doctorDetails.name || "Loading..."}</h3>
         <p className="specialization">
@@ -229,7 +223,6 @@ const closeModal = () => {
       </div>
 
       <div className="main-content">
-        {/* Patients Section */}
         <div className="patients-section">
           <h4>Patients</h4>
           {patients.length > 0 ? (

@@ -30,7 +30,6 @@ function DoctorRegistration () {
         const userId = decodedToken.userId;
         console.log(userId);
     
-        // Validate form inputs
         if (!speciality || !description) {
           alert('Please fill in all fields.');
           return;
@@ -45,7 +44,6 @@ function DoctorRegistration () {
         console.log("data sent: ",formData);
     
         try {
-          //Making POST request to the backend
           const response = await fetch ('http://localhost:3000/doc/post',{
             method: 'POST',
             headers: {

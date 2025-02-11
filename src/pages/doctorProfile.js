@@ -9,20 +9,16 @@ function DoctorProfile() {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                // Make a GET request to your backend to fetch all doctors
                 const response = await fetch('http://localhost:3000/doc/getAll');
                 
-                // Check if response is okay
                 if (!response.ok) {
                     throw new Error('Failed to fetch doctors');
                 }
                 
-                const data = await response.json(); // Parse the JSON data
+                const data = await response.json();
                 
-                // Set the doctor data in the state
                 setDoctors(data);
             } catch (err) {
-                // Handle errors and set error state
                 setError(err.message);
             }
         };
@@ -31,7 +27,7 @@ function DoctorProfile() {
     }, []);
 
     if (error) {
-        return <div>Error: {error}</div>; // Display error message if something goes wrong
+        return <div>Error: {error}</div>;
     }
 
   return (

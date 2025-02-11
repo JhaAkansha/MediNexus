@@ -23,10 +23,9 @@ export default function DoctorLogin( { setToken } ) {
       });
       const data = await response.json();
       
-      // If response is OK, return the token
       if (response.ok) {
         alert('Login Successful');
-        return data.token; // Return the JWT token
+        return data.token;
       } else {
         alert(data.message || 'Login failed');
         return null;
@@ -38,7 +37,6 @@ export default function DoctorLogin( { setToken } ) {
     }
   };
 
-  // Google login response handler
 const responseGoogle = async (response) => {
   if (response.credential) {
     const userCredentials = { token: response.credential };
@@ -55,9 +53,9 @@ const responseGoogle = async (response) => {
       const data = await res.json();
 
       if (res.ok) {
-        setToken(data.token);                             // Set the JWT token
-        localStorage.setItem('authToken', data.token);    // Store the token in localStorage
-        navigate('/');                                     // Redirect to the homepage or dashboard
+        setToken(data.token);
+        localStorage.setItem('authToken', data.token);
+        navigate('/');
       } else {
         alert('Google login failed. Please try again.');
       }
@@ -82,9 +80,7 @@ const responseGoogle = async (response) => {
     const token = await loginUser(userCredentials);
     
     if (token) {
-      // If token is received, set it in the parent component
       setToken(token);
-      //store the token in localStorage for persistence
       localStorage.setItem('authToken', token);
       const decodedToken = jwtDecode(token);
         const userType = decodedToken.userType;

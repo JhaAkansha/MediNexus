@@ -25,13 +25,11 @@ function DoctorSignUp({ setToken }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Get form data
     const name = document.getElementById('userName').value;
     const email = document.getElementById('userEmail').value;
     const password = document.getElementById('userPassword').value;
     const confirmPassword = document.getElementById('setPassword').value;
 
-    // Validate form inputs
     if (!name || !email || !password) {
       alert('Please fill in all fields.');
       return;
@@ -43,19 +41,15 @@ function DoctorSignUp({ setToken }) {
 
     setIsLoading(true);
     try {
-      // Creating the user in Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Send email verification
       await sendEmailVerification(user);
 
-      // Inform the user about the email verification
       setIsLoading(false);
       alert('A verification email has been sent. Please check your inbox to proceed.');
       pollForEmailVerification(user, name, email, password, userType);
 
-      // Proceed after email is verified
       listenForEmailVerification(user, name, email, password, userType);
     } catch (error) {
       console.error('Error during registration:', error);
@@ -65,18 +59,18 @@ function DoctorSignUp({ setToken }) {
 
   const pollForEmailVerification = async (user, name, email, password, userType) => {
     let attempts = 0;
-    const maxAttempts = 10; // Limit the number of attempts to check email verification status
+    const maxAttempts = 10;
 
     const checkVerificationStatus = async () => {
-      await user.reload(); // Reload user object to get the updated emailVerified status
+      await user.reload();
       if (user.emailVerified) {
         console.log('Email is verified');
         const userData = { name, email, password, userType }
-        addUserToBackend(userData); // Proceed to backend call
+        addUserToBackend(userData);
       } else if (attempts < maxAttempts) {
         attempts++;
         console.log(`Email not verified, checking again... (${attempts})`);
-        setTimeout(checkVerificationStatus, 3000); // Retry every 3 seconds
+        setTimeout(checkVerificationStatus, 3000);
       } else {
         alert('Verification timed out, please try again later.');
       }
@@ -85,7 +79,6 @@ function DoctorSignUp({ setToken }) {
     checkVerificationStatus();
   };
 
-  // Function to listen for email verification
   const listenForEmailVerification = (user, name, email, password, userType) => {
     console.log("unsubscribe");
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -106,12 +99,10 @@ function DoctorSignUp({ setToken }) {
     });
   };
 
-  // Function to add user data to the backend
   const addUserToBackend = async (userData) => {
     console.log("addUserToBackend")
     console.log(userData);
     try {
-      // Making POST request to the backend
       const response = await fetch('http://localhost:3000/api/post', {
         method: 'POST',
         headers: {
@@ -141,9 +132,7 @@ function DoctorSignUp({ setToken }) {
         const token = loginResult.token;
 
         if (token) {
-          // If token is received, set it in the parent component
           setToken(token);
-          // Store the token in localStorage for persistence
           localStorage.setItem('authToken', token);
           const decodedToken = jwtDecode(token);
           const userType = decodedToken.userType;

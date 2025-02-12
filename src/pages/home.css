@@ -71,15 +71,15 @@
   }
   
   .login-button:hover {
-    background-color: #588272; /* Darker green on hover */
+    background-color: #588272;
   }
   
   .login-button:focus {
-    outline: none; /* Removes outline when button is focused */
+    outline: none;
   }
   
   .login-button:active {
-    background-color: #426256; /* Even darker green when active */
+    background-color: #426256;
   }
   
   .stock {

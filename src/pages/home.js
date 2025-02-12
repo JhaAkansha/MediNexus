@@ -7,10 +7,9 @@ function Home({ setToken, removeToken }) {
 
   const navigate = useNavigate();
 
-  // Handle logout
   const handleLogout = () => {
     removeToken();
-    navigate('/doctorLogin'); // Redirect to login page after logout
+    navigate('/doctorLogin');
   };
     return (
       <div className="Home">
@@ -19,7 +18,6 @@ function Home({ setToken, removeToken }) {
         <img className='profile-add' src = {icon} alt = 'dummy'></img>
         <h1 className='medinexus'>MediNexus</h1>
         <div className='tagline'>Your Health, Organized.</div>
-        {/* Check if the user is logged in and show either Login or Logout button */}
         {localStorage.getItem('authToken') ? (
             <button className='logout-button' onClick={handleLogout}>Logout</button>
           ) : (

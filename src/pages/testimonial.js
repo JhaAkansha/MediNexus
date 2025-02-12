@@ -29,7 +29,7 @@ function Testimonial() {
       }, []);
   
       if (error) {
-          return <div>Error: {error}</div>; // Display error message if something goes wrong
+          return <div>Error: {error}</div>;
       }
 
       const renderSvg = (satisfaction) => {

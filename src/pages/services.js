@@ -1,24 +1,22 @@
-// src/pages/services.js
-
 import React from 'react';
-import './services.css'; // Ensure you have this CSS file
+import './services.css';
 
 const Services = () => {
     const services = [
         {
             title: "Appointment Booking",
-            icon: "❤️", // Use appropriate icon
-            link: "/doctorProfile", // Define your route
+            icon: "❤️",
+            link: "/doctorProfile",
         },
         {
             title: "Check Calendar",
-            icon: "🩺", // Use appropriate icon
-            link: "/calendar", // Define your route
+            icon: "🩺",
+            link: "/calendar",
         },
         {
             title: "Medical History and Records",
-            icon: "🧬", // Use appropriate icon
-            link: "/medicalRecords", // Define your route
+            icon: "🧬",
+            link: "/medicalRecords",
         },
     ];
 

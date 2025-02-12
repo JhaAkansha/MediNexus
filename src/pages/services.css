@@ -1,8 +1,6 @@
-/* src/components/Services.css */
-
 .services-container {
     text-align: center;
-    height: 90vh; /*total height = 100vh, navbar = 10vh */
+    height: 90vh;
 }
 
 .services-heading {
@@ -37,6 +35,6 @@
 }
 
 .service-icon {
-    font-size: 40px; /* Adjust size as needed */
+    font-size: 40px;
     margin-bottom: 10px;
 }

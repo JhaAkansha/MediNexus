@@ -1,5 +1,10 @@
 # MediNexus
 This is an application to allow smooth communication between doctors and patients.
+There is a different dashboard for patints as well as doctors.
+The patient can book an appointment, view their schedule appointments and keep an online record of their medical history.
+It also allows the patient to leave a review for a doctor.
+The doctor can see all the appointments they have for the day along with the patient name and appointment time.
+They can click on the patient to see their uploaded medical records.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -47,7 +47,6 @@ function Appointment() {
 
         if (response.ok) {
             alert('Appointment booked successfully!');
-            // Optionally clear the form after successful booking
             setFormData({
                 name: '',
                 phone: '',
@@ -56,7 +55,6 @@ function Appointment() {
                 doctor: '',
             });
         } else {
-            // If slot is unavailable, alert the user
             alert(data.message || 'Failed to book the appointment. Please try again.');
         }
     } catch (error) {

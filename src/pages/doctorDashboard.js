@@ -22,7 +22,6 @@ function DoctorDashboard({ setToken, removeToken }) {
   const [patients, setPatients] = useState([]);
   const navigate = useNavigate();
 
-  // Handle logout
   const handleLogout = () => {
     removeToken();
     navigate('/doctorLogin');

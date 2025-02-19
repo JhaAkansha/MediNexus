@@ -15,11 +15,11 @@ function AddReview() {
   useEffect(() => {
       const fetchDoctors = async () => {
         try {
-          const response = await fetch('http://localhost:3000/appt/getAll'); // Adjust your API URL
+          const response = await fetch('http://localhost:3000/appt/getAll');
           const data = await response.json();
   
           if (response.ok) {
-            setDoctors(data); // Set the doctors state with the fetched doctors
+            setDoctors(data);
           } else {
             console.error('Error fetching doctors:', data.message);
           }
@@ -28,7 +28,7 @@ function AddReview() {
         }
       };
   
-      fetchDoctors(); // Call the fetch function
+      fetchDoctors();
     }, []);
 
   const handleChange = (e) => {

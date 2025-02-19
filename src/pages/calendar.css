@@ -159,7 +159,7 @@ abbr[title] {
 }
 
 .appointment-day {
-  background-color: #ff6f61; /* Highlight color */
+  background-color: #ff6f61;
   color: white;
   border-radius: 6px;
   cursor: pointer;

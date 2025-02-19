@@ -13,11 +13,10 @@ function MedicalRecords() {
     };
 
     useEffect(() => {
-        // Fetch the list of uploaded documents from the server
         const fetchRecords = async () => {
             try {
                 const response = await axios.get('http://localhost:3000/records/getAll');
-                setRecords(response.data); // Set the fetched records in the state
+                setRecords(response.data);
             } catch (error) {
                 console.error('Error fetching records:', error);
             }
@@ -45,7 +44,6 @@ function MedicalRecords() {
             console.log("data sent: ",formData);
 
             try {
-                //Making POST request to the backend
                 const response = await fetch ('http://localhost:3000/records/post',{
                   method: 'POST',
                   headers: {

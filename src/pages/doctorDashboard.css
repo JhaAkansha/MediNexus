@@ -53,7 +53,6 @@ body {
     font-size: 1.8rem;
   }
   
-/* Doctor Info Styling */
 .doctor-info {
   text-align: center;
   margin-bottom: 20px;
@@ -72,187 +71,188 @@ body {
 }
 
 
-  .action-buttons button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    background-color: #2a6156;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
+.action-buttons button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #2a6156;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
   
-  .action-buttons button:hover {
-    background-color: #1d4e43;
-  }
+.action-buttons button:hover {
+  background-color: #1d4e43;
+}
   
-  .edit-section {
-    background-color: #1e5a4f;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-  }
+.edit-section {
+  background-color: #1e5a4f;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
   
-  .edit-section h4 {
-    margin-bottom: 10px;
-  }
+.edit-section h4 {
+  margin-bottom: 10px;
+}
   
-  .edit-section form {
-    display: flex;
-    flex-direction: column;
-  }
+.edit-section form {
+  display: flex;
+  flex-direction: column;
+}
   
-  .edit-section label {
-    margin-bottom: 5px;
-    font-size: 1rem;
-  }
+.edit-section label {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
   
-  .edit-section input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-  }
+.edit-section input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
   
-  .save-button {
-    background-color: #279e7a;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.save-button {
+  background-color: #279e7a;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
   
-  .save-button:hover {
-    background-color: #1c7e60;
-  }
+.save-button:hover {
+  background-color: #1c7e60;
+}
   
-  .react-calendar__navigation button {
-    color: black;
-    min-width: 44px;
-    background: none;
-      background-color: rgba(0, 0, 0, 0);
-    font-size: 20px;
-    margin-top: 8px;
-  }
+.react-calendar__navigation button {
+  color: black;
+  min-width: 44px;
+  background: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 20px;
+  margin-top: 8px;
+}
   
-  .calendar-section {
-    background-color: #1e5a4f;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-  }
+.calendar-section {
+  background-color: #1e5a4f;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
   
-  .calendar-section h4 {
-    margin-bottom: 10px;
-  }
+.calendar-section h4 {
+  margin-bottom: 10px;
+}
   
-  .quick-stats {
-    display: grid;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
+.quick-stats {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 20px;
+}
   
-  .stat {
-    display: flex;
-    align-items: center;
-    background-color: #2a6156;
-    border-radius: 8px;
-    padding: 10px;
-  }
+.stat {
+  display: flex;
+  align-items: center;
+  background-color: #2a6156;
+  border-radius: 8px;
+  padding: 10px;
+}
   
-  .stat .icon {
-    font-size: 1.5rem;
-    margin-right: 10px;
-  }
-  .welcome-section h3{
-    color: #2a6156;
-  }
-  .welcome-section p{
-    color: #2a6156;
-  }
+.stat .icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
 
-  .stat h4 {
-    font-size: 1rem;
-    margin: 0;
-  }
-  .details p{
-    color: aliceblue;
-  }
-  .stat p {
-    font-size: 1.2rem;
-    margin: 0;
-    font-weight: bold;
-  }
+.welcome-section h3{
+  color: #2a6156;
+}
+
+.welcome-section p{
+  color: #2a6156;
+}
+
+.stat h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.details p{
+  color: aliceblue;
+}
+
+.stat p {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: bold;
+}
   
-  .main-content {
-    margin-bottom: 20px;
-    gap: 20px;
-  }
+.main-content {
+  margin-bottom: 20px;
+  gap: 20px;
+}
   
-  .appointments-section,
-  .operations-section,
-  .patients-section {
-    background-color: #1e5a4f;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
+.appointments-section, .operations-section, .patients-section {
+  background-color: #1e5a4f;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
   
-  h4 {
-    margin-bottom: 10px;
-    font-size: 1.4rem;
-  }
+h4 {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
   
-  .tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
   
-  .tabs span {
-    cursor: pointer;
-    padding: 5px 15px;
-    background-color: #16423c;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
+.tabs span {
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: #16423c;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
   
-  .tabs span.active {
-    background-color: #279e7a;
-    font-weight: bold;
-  }
+.tabs span.active {
+  background-color: #279e7a;
+  font-weight: bold;
+}
   
-  .content-box {
-    background-color: #2a6156;
-    border-radius: 8px;
-    padding: 10px;
-  }
+.content-box {
+  background-color: #2a6156;
+  border-radius: 8px;
+  padding: 10px;
+}
   
-  .content-box p {
-    margin: 0;
-  }
+.content-box p {
+  margin: 0;
+}
   
-  .patients-section {
-    grid-column: span 2;
-  }
+.patients-section {
+  grid-column: span 2;
+}
   
-  .patient-box {
-    background-color: #2a6156;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.patient-box {
+  background-color: #2a6156;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
   
-  .patient-box:hover {
-    background-color: #1d4e43;
-  }
-  
+.patient-box:hover {
+  background-color: #1d4e43;
+}  

@@ -48,7 +48,7 @@
   }
 
   .hidden-radio {
-  display: none; /* Hides the radio input */
+  display: none;
 }
 
 .icon svg {
@@ -58,5 +58,5 @@
 }
 
 .icon input:checked + svg {
-  fill: #16423c; /* Change the color when selected */
+  fill: #16423c;
 }

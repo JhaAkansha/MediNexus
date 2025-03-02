@@ -1,14 +1,14 @@
 const express = require('express');
 const Model = require('../models/model_appointment');
 const User = require('../models/model_user');
-const jwt = require('jsonwebtoken'); // Assuming JWT is used for user authentication
+const jwt = require('jsonwebtoken');
 
 const router = express.Router()
 
 module.exports = router;
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Get token from the Authorization header
+    const token = req.headers['authorization']?.split(' ')[1];
     console.log("received token: ", token);
   
     if (!token) {
@@ -16,18 +16,17 @@ const verifyToken = (req, res, next) => {
     }
   
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY); // Verify and decode the token
-      req.userId = decoded.userId; // Attach user ID to the request object
-      next(); // Pass control to the next middleware or route handler
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      req.userId = decoded.userId;
+      next();
     } catch (err) {
-      return res.status(401).json({ message: 'Invalid token' }); // Invalid or expired token
+      return res.status(401).json({ message: 'Invalid token' });
     }
   };
 
-// Fetch appointments for the authenticated user
 router.get('/getUserAppointments', verifyToken, async (req, res) => {
     try {
-        const userId = req.userId; // Extract user ID from the token
+        const userId = req.userId;
         const appointments = await Model.find({ userId });
 
         if (!appointments.length) {
@@ -42,7 +41,7 @@ router.get('/getUserAppointments', verifyToken, async (req, res) => {
 
 router.get('/getDoctorAppointments', verifyToken, async (req, res) => {
     try {
-        const userId = req.userId; // Extract user ID from the token
+        const userId = req.userId;
         const appointments = await Model.find({ doctor: userId });
 
         if (!appointments.length) {
@@ -55,7 +54,6 @@ router.get('/getDoctorAppointments', verifyToken, async (req, res) => {
     }
 });
 
-//Post Method
 router.post('/post', async (req, res) => {
     const { name, phoneNumber, appointmentDate, preferredTime, doctor, userId } = req.body;
 
@@ -90,23 +88,19 @@ router.post('/post', async (req, res) => {
 });
 
 
-//Get all Method
 router.get('/getAll', async (req, res) => {
     try{
-        //const data = await Model.find();
         const doctors = await User.find({ userType: 'doctor' });
         if (!doctors.length) {
             return res.status(404).json({ message: 'No doctors found.' });
         }
         res.status(200).json(doctors);
-        //res.json(data)
     }
     catch(error){
         res.status(500).json({message: error.message})
     }
 })
 
-//Get by ID Method
 router.get('/getOne/:id', async (req, res) => {
     try{
         const data = await Model.findById(req.params.id);
@@ -117,7 +111,6 @@ router.get('/getOne/:id', async (req, res) => {
     }
 })
 
-//Update by ID Method
 router.patch('/update/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -136,12 +129,11 @@ router.patch('/update/:id', async (req, res) => {
     }
 })
 
-//Delete by ID Method
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Model.findByIdAndDelete(id);
-        res.send(`Document with ${data.name} has been deleted..`);  // Corrected string interpolation
+        res.send(`Document with ${data.name} has been deleted..`);
     }
     catch (error) {
         res.status(400).json({ message: error.message })

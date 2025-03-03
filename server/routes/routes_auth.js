@@ -14,7 +14,6 @@ router.post('/login', async (req, res) => {
     }
 
     try {
-      // Find user and validate credentials
     const user = await User.findOne({ email });
     console.log("User: ", user);
     if (!user) {
@@ -29,11 +28,9 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Incorrect password' });
     }
   
-    // Generate JWT token
     const payload = { userId: user._id, userType: user.userType };
     const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
   
-    // Send token back to the client
     res.json({ token });
     }
     catch (err) {

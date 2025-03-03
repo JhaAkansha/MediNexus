@@ -1,41 +1,35 @@
 const express = require('express');
-const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
-const Model = require('../models/model_user'); // User model
+const bcrypt = require('bcrypt');
+const Model = require('../models/model_user');
 const router = express.Router();
 
-// POST Method (Sign Up)
 router.post('/post', async (req, res) => {
     const { name, email, password, userType } = req.body;
 
-    // Basic validation
     if (!name || !email || !password || !userType) {
         return res.status(400).json({ message: 'Email and password are required.' });
     }
 
     try {
-        // Check if the email already exists
         const existingUser = await Model.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'Email already exists.' });
         }
 
-        // Create a new user
         const newUser = new Model({
             name,
             email,
-            password: password, // Store the hashed password,
+            password: password,
             userType
         });
 
-        // Save the user to the database
         const dataToSave = await newUser.save();
-        res.status(201).json(dataToSave); // Return the saved user object
+        res.status(201).json(dataToSave);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
 
-// GET All Users
 router.get('/getAll', async (req, res) => {
     try {
         const data = await Model.find();
@@ -45,7 +39,6 @@ router.get('/getAll', async (req, res) => {
     }
 });
 
-// GET One User by ID
 router.get('/getOne/:id', async (req, res) => {
     try {
         const data = await Model.findById(req.params.id);
@@ -58,24 +51,21 @@ router.get('/getOne/:id', async (req, res) => {
     }
 });
 
-// PATCH Method (Update User by ID)
 router.patch('/update/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
         
-        // Validate incoming data (only email and password can be updated)
         if (!updatedData.email && !updatedData.password) {
             return res.status(400).json({ message: 'Email or password is required to update.' });
         }
 
-        // Hash password if it's being updated
         if (updatedData.password) {
             const salt = await bcrypt.genSalt(10);
             updatedData.password = await bcrypt.hash(updatedData.password, salt);
         }
 
-        const options = { new: true }; // Return the updated document
+        const options = { new: true };
 
         const result = await Model.findByIdAndUpdate(id, updatedData, options);
 
@@ -83,13 +73,12 @@ router.patch('/update/:id', async (req, res) => {
             return res.status(404).json({ message: 'User not found.' });
         }
 
-        res.status(200).json(result); // Return the updated user
+        res.status(200).json(result);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
 
-// DELETE Method (Delete User by ID)
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;

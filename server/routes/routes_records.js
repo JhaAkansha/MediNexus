@@ -21,12 +21,12 @@ const upload = multer({
         // Allow only PDF files
         const allowedTypes = ['application/pdf'];
         if (allowedTypes.includes(file.mimetype)) {
-            cb(null, true);  // Accept the file
+            cb(null, true);
         } else {
             cb(new Error('Invalid file type, only PDFs are allowed'), false);
         }
     },
-    limits: { fileSize: 5 * 1024 * 1024 },  // Limit file size to 5MB
+    limits: { fileSize: 5 * 1024 * 1024 },
 });
 
 
@@ -41,7 +41,7 @@ router.use((err, req, res, next) => {
 
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Get token from the Authorization header
+    const token = req.headers['authorization']?.split(' ')[1];
     console.log("received token: ", token);
   
     if (!token) {
@@ -99,7 +99,7 @@ router.get('/getAll', async (req, res) => {
             } else {
                 return {
                     ...record.toObject(),
-                    fileUrl: null // If file is null, return null for fileUrl
+                    fileUrl: null
                 };
             }
         });
@@ -134,6 +134,5 @@ router.get('/get/:id', async (req, res) => {
         res.status(500).json({ message: 'Error fetching records' });
     }
 });
-
 
 module.exports = router;

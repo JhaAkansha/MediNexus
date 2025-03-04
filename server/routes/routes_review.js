@@ -2,11 +2,9 @@ const express = require('express');
 const Model = require('../models/model_review');
 const router = express.Router();
 
-// POST Method (Add Review)
 router.post('/post', async (req, res) => {
     const { name, doctor, satisfaction, experience } = req.body;
 
-    // Basic validation
     if (!name || !doctor || !satisfaction) {
         return res.status(400).json({ message: 'Please fill the required fields' });
     }
@@ -19,15 +17,13 @@ router.post('/post', async (req, res) => {
             experience
         });
 
-        // Save the user to the database
         const dataToSave = await newReview.save();
-        res.status(201).json(dataToSave); // Return the saved user object
+        res.status(201).json(dataToSave);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
 
-// GET All Review
 router.get('/getAll', async (req, res) => {
     try {
         const data = await Model.find();
@@ -37,7 +33,6 @@ router.get('/getAll', async (req, res) => {
     }
 });
 
-// GET One Review by ID
 router.get('/getOne/:id', async (req, res) => {
     try {
         const data = await Model.findById(req.params.id);
@@ -50,7 +45,6 @@ router.get('/getOne/:id', async (req, res) => {
     }
 });
 
-// DELETE Method (Delete Review by ID)
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;

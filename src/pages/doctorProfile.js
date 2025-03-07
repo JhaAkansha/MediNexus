@@ -1,7 +1,6 @@
 import './doctorProfile.css';
 import React, { useState, useEffect } from 'react';
 
-
 function DoctorProfile() {
   const [doctors, setDoctors] = useState([]);
   const [error, setError] = useState(null);

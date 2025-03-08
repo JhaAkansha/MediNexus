@@ -54,7 +54,6 @@ function DoctorDashboard({ setToken, removeToken }) {
     fetchDoctorDetails();
   }, []);
 
-
   useEffect(() => {
     const fetchPatients = async () => {
       const token = localStorage.getItem('authToken');
@@ -66,7 +65,6 @@ function DoctorDashboard({ setToken, removeToken }) {
           },
         });
         const data = await response.json();
-
         if (response.ok) {
           setPatients(data);
         } else {
@@ -105,7 +103,6 @@ function DoctorDashboard({ setToken, removeToken }) {
         console.error("Error fetching appointments:", error);
       }
     };
-
     fetchAppointments();
   }, []);
 
@@ -120,8 +117,6 @@ function DoctorDashboard({ setToken, removeToken }) {
 
   const toggleEditMode = () => setEditMode(!editMode);
   const toggleCalendar = () => setCalendarVisible(!calendarVisible);
-  
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
     const selected = appointments.find(
@@ -153,7 +148,6 @@ const closeModal = () => {
           </button>
         </div>
       </header>
-
       {editMode && (
         <div className="edit-section">
           <h4>Edit Information</h4>
@@ -168,7 +162,6 @@ const closeModal = () => {
               }
               placeholder="Enter your name"
             />
-            
             <label htmlFor="specialization">Specialization:</label>
             <input
               type="text"
@@ -192,7 +185,6 @@ const closeModal = () => {
           </form>
         </div>
       )}
-
       {calendarVisible && (
         <div className="calendar-section">
           <h4>Appointments Calendar</h4>
@@ -211,8 +203,6 @@ const closeModal = () => {
           />
         </div>
       )}
-
-
 
       <div className="doctor-info">
         <h3>{doctorDetails.name || "Loading..."}</h3>
@@ -239,9 +229,6 @@ const closeModal = () => {
           )}
         </div>
       </div>
-
-
-
       <div className="main-content">
         <div className="appointments-section">
           <h4>Today's Appointments</h4>

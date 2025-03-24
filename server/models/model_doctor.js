@@ -19,7 +19,7 @@ const dataSchema = new mongoose.Schema({
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Reference to the User model
+        ref: 'User', // Make a reference to the User model
         required: true
     }
 });

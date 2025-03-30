@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import Modal from "react-modal";
-// import "./doctorDashboard.css";
+import "./doctorDashboard.css";
 import "./calendar.css";
 import { useNavigate } from "react-router-dom";
 
